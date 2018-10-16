@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>23.调整tab的宽度</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：通常使用 <pre> 和 <code> 元素来显示代码，它们具有浏览器所赋予的默认样式，如何改变它们
+
+    一、tab-size
+
+      1. CSS 属性 tab-size 可以控制这个情况。这个属性接受一个数字（表示字符数）或者一个长度值（这个不那么实用）
+        
+        pre {
+          tab-size: 2
+        }
+
+  */
+  </script>
+
+  <style>
+    pre {
+      padding: .5em;
+      line-height: 1.5;
+      background: hsl(20, 50%, 95%);
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    pre:nth-of-type(2) {
+      tab-size: 2
+    }
+
+    pre:nth-of-type(3) {
+      tab-size: 4
+    }
+
+    pre:nth-of-type(4) {
+      tab-size: 0
+    }
+
+    code {
+      font: inherit;
+    }
+  </style>
+</head>
+<body>
+  <pre>
+    <code>// Default tab size
+    while (true) {
+      var d = new Date();
+      if (d.getDate()==1 &amp;&amp;
+          d.getMonth()==3) {
+        alert("TROLOLOL");
+      }
+    }</code>
+  </pre>
+
+  <pre>
+    <code>// tab-size: 2;
+    while (true) {
+      var d = new Date();
+      if (d.getDate()==1 &amp;&amp;
+          d.getMonth()==3) {
+        alert("TROLOLOL");
+      }
+    }</code>
+  </pre>
+
+  <pre>
+    <code>// tab-size: 4;
+    while (true) {
+      var d = new Date();
+      if (d.getDate()==1 &amp;&amp;
+          d.getMonth()==3) {
+        alert("TROLOLOL");
+      }
+    }</code>
+  </pre>
+
+  <pre>
+    <code>// tab-size: 0;
+    while (true) {
+      var d = new Date();
+      if (d.getDate()==1 &amp;&amp;
+          d.getMonth()==3) {
+        alert("TROLOLOL");
+      }
+    }</code>
+  </pre>
+</body>
+</html>

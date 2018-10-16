@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>43. 逐帧动画</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：进度指示框逐帧动画
+
+    不使用 git：git 不具备 Alpha 透明的特性且对调试过程来说相当不便
+    
+    一、在 PNG 格式中增加对逐帧动画的支持
+
+      1. 把动画中的所有帧全部拼合到一张 PNG 图片中
+        对它应用各种不同的 background-position 值
+        采用 steps() 调速函数，根据你指定的步进数量，把整个动画切分为多帧而且整个动画会在帧与帧之间硬切，不会做任何插值处理
+        steps() 还接受可选的第二个参数，其值可以是 start 或 end（默认值）
+      
+        .loader {
+          background: url('./images/8.loader.png') 0 0;
+          animation: loader 1s infinite steps(8);
+        }
+
+        @keyframes loader {
+          to {
+            background-position: -800px 0;
+          }
+        }
+  
+  */
+  </script>
+
+  <style>
+    .loader {
+      width: 100px;
+      height: 100px;
+      text-indent: 999px;
+      overflow: hidden;
+      background: url('./images/8.loader.png') 0 0;
+      animation: loader 1s infinite steps(8);
+    }
+
+    @keyframes loader {
+      to {
+        background-position: -800px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader">Loading…</div>
+</body>
+</html>

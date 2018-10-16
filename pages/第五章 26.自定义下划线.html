@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>26.自定义下划线</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：自定义下划线
+
+    text-decoration: underline; 浏览器渲染差别太大
+  
+    1. background-image
+      下划线在遇到字母时会自动断开避让
+      使用渐变来实现下划线的高明之处在于，这些线条极为灵活
+
+      a {
+        background: linear-gradient(gray, gray) no-repeat;
+        background-size: 100% 1px;
+        background-position: 0 1.02em;
+      }
+  
+  */
+  </script>
+
+  <style>
+    body {
+      line-height: 1.6;
+      font: 250% Baskerville, Palatino, serif;
+    }
+
+    a {
+      padding: .1em;
+      background: linear-gradient(gray, gray) no-repeat;
+      background-size: 100% 1px;
+      background-position: 0 1.02em;
+      text-shadow: .05em 0 white, -.05em 0 white;
+    }
+
+    p:nth-child(2) a {
+      background: linear-gradient(90deg, gray 66%, transparent 0) repeat-x;
+      background-size: .2em 2px;
+      background-position: 0 1em;
+    }
+
+    p:nth-child(3) a {
+      background: linear-gradient(-45deg, transparent 40%, red 0, red 60%, transparent 0) 0 1em,
+        linear-gradient(45deg, transparent 40%, red 0, red 60%, transparent 0) .1em 1em;
+      background-repeat: repeat-x;
+      background-size: .2em .1em;
+      text-shadow: .05em 0 white, -.05em 0 white;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    “The only way to <a>get rid of a temp­ta­tion</a> is to <a>yield</a> to it.”
+  </p>
+  <p>
+    “The only way to <a>get rid of a temp­ta­tion</a> is to <a>yield</a> to it.”
+  </p>
+  <p>
+    “The only way to <a>get rrid of a temp­ta­toin</a> is to <a>yeild</a> to it.”
+  </p>
+</body>
+</html>

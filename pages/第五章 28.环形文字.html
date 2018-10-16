@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>28.环形文字</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：文字环形排列
+
+    1. 还没有更好的纯 CSS 实现方法，但可以借助一点内联 SVG
+    
+      <svg viewBox="0 0 100 100"> 
+        <path d="M 0,50 a 50,50 0 1,1 0,1 z" id="circle" /> 
+          <text>
+            <textPath xlink:href="#circle">circular reasoning works because</textPath>
+          </text> 
+      </svg>
+  
+  */
+  </script>
+
+  <style>
+    body {
+      font: bold 120% Helvetica, sans-serif;
+    }
+
+    .circular {
+      width: 20em;
+      height: 20em;
+      margin: 3em auto 0;
+    }
+
+    .circular svg {
+      display: block;
+      overflow: visible;
+      transition: 10s linear transform;
+    }
+
+    .circular svg:hover {
+      transform: rotate(-2turn);
+    }
+
+    .circular text {
+      fill: currentColor
+    }
+
+    .circular path {
+      fill: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="circular">
+    circular reasoning works because
+  </div>
+
+  <script src="./js/util.js"></script>
+  <script>
+    $$('.circular').forEach(function (el) {
+      var NS = "http://www.w3.org/2000/svg";
+
+      var svg = document.createElementNS(NS, "svg");
+      svg.setAttribute("viewBox", "0 0 100 100");
+
+      var circle = document.createElementNS(NS, "path");
+      circle.setAttribute("d", "M0,50 a50,50 0 1,1 0,1z");
+      circle.setAttribute("id", "circle");
+
+      var text = document.createElementNS(NS, "text");
+      var textPath = document.createElementNS(NS, "textPath");
+      textPath.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', '#circle');
+      textPath.textContent = el.textContent;
+      text.appendChild(textPath);
+
+      svg.appendChild(circle);
+      svg.appendChild(text);
+
+      el.textContent = '';
+      el.appendChild(svg);
+    });
+  </script>
+</body>
+</html>

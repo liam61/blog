@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>4.边框内圆角</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：让一个容器，只有内测有圆角，而边框或描边的四个角在外部仍然保持直角的形状
+  
+    一、用两个元素实现，内部 div 设置圆角边框
+
+    二、利用 outline
+
+      不过要利用 box-shadow 处理好投影扩张
+
+  */
+  
+  </script>
+
+  <style>
+    div {
+      max-width: 10em;
+      border-radius: .8em;
+      padding: 1em;
+      margin: 1em;
+      background: tan;
+      outline: .6em solid #655;
+      box-shadow: 0 0 0 .4em #655; /*如果不设置这个，outline 就不能喝圆角边框重叠*/
+    }
+    
+  </style>
+</head>
+<body>
+  <div>test for 嗯嗯啊</div>
+</body>
+</html>

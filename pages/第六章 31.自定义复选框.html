@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>31.自定义复选框</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    /*
+    难题：自定义复选框
+
+    一、:checked 伪类只在复选框被勾选时才会匹配
+
+      1. 为它添加生成性内容（伪元素），并基于复选框的状态来为其设置样式
+        把真正的复选框隐藏起来（但不能把它从 tab 键切换焦点的队列中完全删除），再把生成性内容美化一番，用来顶替原来的复选框
+        
+        input[type="checkbox"] {
+          clip: rect(0,0,0,0);
+        }
+
+        input[type="checkbox"] + label:before {
+          content: '\a0';
+          display: inline-block;
+        }
+
+        input[type="checkbox"]:checked + label:before {
+          content: '\2713'; // √ 的 ASCII 码
+          background: yellowgreen;
+        }
+
+    二、开关式按钮
+
+      1. 通过内阴影来达到点中效果
+
+        .m-btn + label {
+          background: #ccc;
+          box-shadow: 0 1px white inset;
+        }
+
+        .m-btn:checked + label, .m-btn:active + label {
+          box-shadow: .04em .1em .2em rgba(0,0,0,.6) inset;
+          border-color: rgba(0,0,0,.3);
+          background: #bbb;
+        }
+  
+  */
+  </script>
+
+  <style>
+    input[type="checkbox"] {
+      position: absolute;
+      clip: rect(0,0,0,0);
+    }
+
+    .m-checkbox + label:before {
+      content: '\a0';
+      display: inline-block;
+      vertical-align: .2em;
+      width: .8em;
+      height: .8em;
+      margin-right: .2em;
+      border-radius: .2em;
+      background: silver;
+      text-indent: .15em;
+      line-height: .65;
+    }
+
+    .m-checkbox:checked + label:before {
+      content: '\2713';
+      background: yellowgreen;
+    }
+
+    .m-checkbox:focus + label:before {
+      box-shadow: 0 0 .1em .1em #58a;
+    }
+
+    .m-checkbox:disabled + label:before {
+      background: gray;
+      box-shadow: none;
+      color: #555;
+      cursor: not-allowed;
+    }
+
+    .m-btn + label {
+      display: inline-block;
+      padding: .3em .5em;
+      background: #ccc;
+      background-image: linear-gradient(#ddd, #bbb);
+      border: 1px solid rgba(0,0,0,.2);
+      border-radius: .3em;
+      box-shadow: 0 1px white inset;
+      text-align: center;
+      text-shadow: 0 1px 1px white;
+      cursor: pointer;
+    }
+
+    .m-btn:checked + label, .m-btn:active + label {
+      box-shadow: .04em .1em .2em rgba(0,0,0,.6) inset;
+      border-color: rgba(0,0,0,.3);
+      background: #bbb;
+    }
+
+    body {
+      font: 150%/1.6 sans-serif;
+    }
+
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="awesome" class="m-checkbox" autofocus />
+  <label for="awesome">Awesome!</label>
+  <br />
+  <input type="checkbox" id="awesome2" class="m-checkbox" checked />
+  <label for="awesome2">Awesome!</label>
+  <br />
+  <input type="checkbox" id="awesome3" class="m-checkbox" disabled />
+  <label for="awesome3">Awesome!</label>
+  <br />
+  <input type="checkbox" id="awesome4" class="m-checkbox" checked disabled />
+  <label for="awesome4">Awesome!</label>
+  <br /><br />
+  <input type="checkbox" id="awesome5" class="m-btn" autofocus />
+  <label for="awesome5">AwesomeBtn!</label>
+  <br /><br />
+  <input type="checkbox" id="awesome6" class="m-btn" checked />
+  <label for="awesome6">AwesomeBtn!</label>
+</body>
+</html>

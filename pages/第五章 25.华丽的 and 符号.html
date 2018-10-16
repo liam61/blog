@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>25.华丽的&符号</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：& 的艺术字体
+
+    一、font-face
+
+      1. 本地字体和通过 @font-face 规则引入的嵌入字体
+        @font-face 规则中的 src 描述符还可以接受 local() 函数，用于指定本地字体的名称
+        设置 unicode-range 来只指定 & 符号
+
+        @font-face {
+          font-family: Ampersand;
+          src: local('Baskerville-Italic'), local('GoudyOldStyleT-Italic'), local('Garamond-Italic'), local('Palatino-Italic');
+          unicode-range: U+26;
+        }
+  
+  */
+  </script>
+  <style>
+    @font-face {
+      font-family: Ampersand;
+      src: local('Baskerville-Italic'), local('GoudyOldStyleT-Italic'), local('Garamond-Italic'), local('Palatino-Italic');
+      unicode-range: U+26;
+    }
+
+    h1 {
+      font-family: Ampersand, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>HTML & CSS</h1>
+</body>
+</html>

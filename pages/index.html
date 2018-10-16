@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>前言</title>
+
+  <script>
+  /*
+     浏览器支持与回退机制
+
+     1. 正式使用某些技术之前要查证一下浏览器的支持情况，并且特别注意做好回退机制
+
+     2. 查看浏览器兼容信息：
+
+        Can I Use...?（ http://caniuse.com ）
+        Mozilla Developer Network（ http://developer.mozilla.org ）
+
+     3. 浏览器前缀
+
+        -moz-, -o-, -webkit-, -ms-
+
+     4. 检测某个样式属性是否被支持，核心思路就是在任一元素的 element.style 对象上检查该属性是否存在
+
+   */
+
+    var root = document.documentElement; // <html>
+
+    if ('textShadow' in root.style) {
+      // root.classList.add('textshadow');
+      alert("支持 textshadow");
+    } else {
+      // root.classList.add('no-textshadow');
+      alert("不支持 textshadow");
+    }
+
+    // 检测多个属性，抽象成函数
+    function testProperty(property) {
+      var root = document.documentElement;
+      var lowp = property.toLowerCase();
+
+      if (property in root.style) {
+        alert("支持 " + lowp);
+        return true;
+      }
+
+      alert("不支持 " + lowp);
+      return false;
+    }
+    console.log(testProperty('background-origin'));
+    
+    // 检测某个具体的属性值是否支持，抽象成函数
+    // 做法：赋值给对应的属性，然后再检查浏览器是否还保存着这个值
+    function testValue(id, property, value) {
+      var dummy = document.createElement('p');
+      dummy.style[property] = value;
+
+      if (dummy.style[property]) {
+        alert(property + " 样式支持 " + id + " 属性");
+        return true;
+      }
+
+      alert(property + " 样式不支持 " + id + " 属性");
+      return false;
+    }
+    console.log(testValue('linearGradient', 'backgroundImage', 'linear-gradient(red, tan)'));
+    
+  </script>
+</head>
+<body>
+	《CSS 揭秘》笔记。查看 console 打印情况
+</body>
+</html>

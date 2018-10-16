@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>27.现实中的文字效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：文字的立体印刷效果
+
+    一、凸版印刷效果
+
+      1. 出现在底部的浅色投影（或者出现在顶部的暗色投影）会让人产生物体是凹进平面内的错觉
+        同理，出现在底部的暗色投影（或者出现在顶部的浅色投影）会让人产生物体从平面上凸起的错觉
+      
+        p {
+          background: hsl(210, 13%, 60%);
+          text-shadow: 0 1px 1px hsla(0, 0%, 100%, .8);
+        }
+
+    二、空心字效果
+
+      1. 流传最广的方法就是使用多个 text-shadow
+
+        text-shadow: 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+
+      2. svg 方案
+
+        svg use {
+          stroke: black;
+          stroke-width: 6;
+          stroke-linejoin: round;
+        }
+
+    三、文字外发光效果
+
+      1. 准备几层重叠的 text-shadow 即可，不需要考虑偏移量，颜色也只需跟文字保持一致
+        在 :hover 状态下把文字本身隐藏掉
+      
+        a:hover {
+          text-shadow: 0 0 .1em, 0 0 .3em;
+        }
+
+      2. 也可以用 CSS 滤镜来实现文字的模糊效果
+      
+        a:hover {
+          filter: blur(.04em);
+        }
+    
+    四、文字凸起效果
+
+      1. 使用一长串累加的投影，不设模糊并以 1px 的跨度逐渐错开，使颜色逐渐变暗，然后在底部加一层强烈模糊的暗投影
+      
+        text-shadow: 0 1px hsl(0, 0%, 85%), 0 2px hsl(0, 0%, 80%),
+          0 3px hsl(0, 0%, 75%), 0 4px hsl(0, 0%, 70%),
+          0 5px hsl(0, 0%, 65%), 0 5px 10px black;
+
+      2. scss 代码
+
+        @mixin text-3d($color: white, $depth: 5) {
+          $shadows: ();
+          $shadow-color: $color;
+      
+          @for $i from 1 through $depth {
+            $shadow-color: darken($shadow-color, 10%);
+            $shadows: append($shadows, 0 ($i * 1px) $shadow-color, comma);
+          }
+          color: $color;
+          text-shadow: append($shadows, 0 ($depth * 1px) 10px black, comma);
+        }
+        // 调用
+        h1 { @include text-3d(#eee, 4); }
+  
+  */
+  </script>
+
+  <style>
+    body {
+      line-height: 1.6;
+      font: 120% Baskerville, Palatino, serif;
+    }
+
+    p {
+      padding: .8em 1em;
+      background: hsl(210, 13%, 60%);
+      color: hsl(210, 13%, 30%);
+      text-shadow: 0 1px 1px hsla(0, 0%, 100%, .8);
+    }
+
+    p+p {
+      background: hsl(210, 13%, 30%);
+      color: hsl(210, 13%, 60%);
+      text-shadow: 0 -1px 1px black;
+    }
+
+    h1 {
+      margin: 0;
+      color: white;
+    }
+
+    h1:first-child {
+      text-shadow: 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+
+    }
+
+    h1 text {
+      fill: currentColor;
+    }
+
+    h1 use {
+      stroke: black;
+      stroke-width: 6;
+      stroke-linejoin: round;
+    }
+
+    .div1 {
+      background: deeppink;
+      font: bold 200%/1 Rockwell, serif;
+    }
+
+    .div2 {
+      background: #203;
+      font: bold 500%/1 Rockwell, serif;
+    }
+
+    .div2 a {
+      color: #ffc;
+      text-decoration: none;
+      transition: .8s;
+    }
+
+    .div2 a:hover {
+      text-shadow: 0 0 .1em, 0 0 .3em;
+      /* filter: blur(.04em); */
+    }
+
+    .div3 {
+      background: #58a;
+      font: bold 200%/1 Rockwell, serif;
+    }
+
+    .div3 h1 {
+      color: white;
+      text-shadow: 0 1px hsl(0, 0%, 85%),
+        0 2px hsl(0, 0%, 80%),
+        0 3px hsl(0, 0%, 75%),
+        0 4px hsl(0, 0%, 70%),
+        0 5px hsl(0, 0%, 65%),
+        0 5px 10px black;
+    }
+  </style>
+</head>
+<body>
+  <p>“The only way to get rid of a temp­ta­tion is to yield to it.”</p>
+  <p>“The only way to get rid of a temp­ta­tion is to yield to it.”</p>
+  <br />
+  <div class="div1">
+    <h1>CSS</h1>
+    <h1>
+      <svg overflow="visible" width="2em" height="1.2em">
+        <use xlink:href="#css" />
+        <text id="css" y="1em">CSS</text>
+      </svg>
+    </h1>
+  </div>
+  <br />
+  <div class="div2">
+    <a href="http://csssecrets.io">Glow</a>
+  </div>
+  <br />
+  <div class="div3">
+    <h1>CSS3d</h1>
+  </div>
+</body>
+</html>

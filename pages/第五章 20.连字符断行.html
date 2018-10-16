@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>20.连字符断行</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：通过连字符来断行
+
+    一、hyphens
+
+      1. CSS 文本（第三版）引入了一个新的属性 hyphens
+        它接受三个值：none、manual 和 auto
+        manual 是它的初始值，其行为正好对应了现有的工作方式：我们可以在任何时候手工插入软连字符，来实现断词折行的效果
+        hyphens: none; 会禁用这种行为
+  
+  */
+  </script>
+
+  <style>
+    p {
+      width: 8.7em;
+      line-height: 1.4;
+      font: 180% Baskerville, serif;
+      text-align: justify;
+      hyphens: none;
+    }
+  
+  </style>
+</head>
+<body>
+  <p>“The only way to get rid of a temptation is to yield to it.”</p>
+</body>
+</html>

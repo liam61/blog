@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>17.染色效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：为一副灰色图片增加染色效果，当发生 :hover 触发效果
+
+    一、基于滤镜的方案（不完全支持）
+
+      1. 由于没有一种现成的滤镜是专门为这个效果而设计的，需把多个滤镜组合起来
+        sepia()：它会给图片增加一种降饱和度的橙黄色染色效果
+        saturate()：滤镜来给每个像素提升饱和度
+        hue-rotate()：把每个像素的色相以指定的度数进行偏移
+  
+    二、基于混合模式的方案
+
+      1.  luminosity 混合模式会保留上层元素的 HSL 亮度信息，并从它的下层吸取色相和饱和度信息
+  
+  */
+  </script>
+
+  <style>
+    .img1 {
+      max-width: 480px;
+      filter: sepia() saturate(4) hue-rotate(295deg);
+      -webkit-filter: sepia() saturate(4) hue-rotate(295deg);
+      transition: .8s filter, .8s -webkit-filter;
+    }
+
+    .img2 {
+      max-width: 480px;
+      -webkit-filter: grayscale(100%); 
+      -moz-filter: grayscale(100%); 
+      -ms-filter: grayscale(100%); 
+      -o-filter: grayscale(100%); 
+      filter: grayscale(100%); 
+      filter: gray;
+      transition: 1.2s filter, 1.2s -webkit-filter;
+    }
+
+    img:hover, img:focus {
+      filter: none;
+      -webkit-filter: none;
+    }
+
+    .tinted-image {
+      width: 480px;
+      height: 333px;
+      background-color: hsl(335, 100%, 50%);
+      background-blend-mode: luminosity;
+      background-size: cover;
+      transition: .8s background-color;
+    }
+
+    .tinted-image:hover {
+      background-color: transparent;
+    }
+
+  
+  </style>
+</head>
+<body>
+  <img class="img1" src="http://csssecrets.io/images/tiger.jpg" />
+  <br /><br />
+  <img class="img2" src="http://csssecrets.io/images/tiger.jpg" />
+  <br /><br />
+  <div style="background-image:url(http://csssecrets.io/images/tiger.jpg)" class="tinted-image"></div>
+</body>
+</html>

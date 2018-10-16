@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>5.条纹背景</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    /*
+      难题：设置条纹背景
+
+      一、水平条纹
+        1. linear-gradient
+
+          linear-gradient(#fb3, #58a); // 两个颜色从顶部和底部开始过渡
+
+          linear-gradient(#fb3 20%, #58a 80%); // 过渡拉近
+
+          linear-gradient(#fb3 50%, #58a 50%); // 不过渡
+
+        2. 还通过 background-size 来调整其尺寸
+
+          background: linear-gradient(#fb3 50%, #58a 50%);
+          background-size: 100% 40px; // 整个背景以 40px 高均分，每份中又按颜色占比分配
+
+          创建不等宽的条纹
+          background: linear-gradient(#fb3 30%, #58a 30%);
+          background-size: 100% 40px;
+
+        3. 为了避免每次改动条纹宽度时都要修改两个数字
+          我们把第二个色标的位置值设置为 0，那它的位置就总是会被浏览器调整为前一个色标的位置值
+
+          background: linear-gradient(#fb3 30%, #58a 0);
+          background-size: 100% 40px;
+
+        4. 多色条纹
+
+          background: linear-gradient(#fb3 33.3%, #58a 0, #58a 66.6%, yellowgreen 0);
+          background-size: 100% 50px;
+      
+      二、垂直条纹：需要在开头加上一个额外的参数来指定渐变的方向。默认值 to  bottom 也就是水平（top -> bottom）
+
+        1. 垂直
+
+          background: linear-gradient(to right, #fb3 30%, #58a 0);
+          background-size: 30px 100%;
+      
+      三、斜向条纹：使用 deg 来定义
+
+        1. 斜向
+
+          background: linear-gradient(45deg, #fb3 50%, #58a 0);
+          background-size: 30px 30px;
+
+        2. 无缝连接
+
+          见下方原理：我们想让条纹的宽度变化为我们原本想要的 15px，background-size 指定为 2*15根号2 ≈ 42.426 406 871像素
+          
+          background: linear-gradient(45deg, #fb3 25%, #58a 0, #58a 50%, #fb3 0, #fb3 75%, #58a 0);
+          background-size: 42.426406871px 42.426406871px;
+
+      四、更好的斜向条纹
+        一个鲜为人知的真相是 linear-gradient() 和 radial-gradient()
+        还各有一个循环式的加强版：repeating-linear-gradient() 和 repeating-radial-gradient()
+
+        它们的工作方式跟前两者类似，只有一点不同：色标是无限循环重复的，直到填满整个背景
+
+        1. 增强版使用，不用指定 background-size
+
+          background: repeating-linear-gradient(45deg, #fb3, #58a 30px);
+        
+          相当于：
+          background: linear-gradient(45deg, 
+            #fb3, #58a 30px, 
+            #fb3 30px, #58a 60px, 
+            #fb3 60px, #58a 90px, 
+            #fb3 90px, #58a 120px, 
+            #fb3 120px, #58a 150px, ...);
+        
+        2. repeating-linear-gradient 实现 div9：需改变颜色时，修改颜色少，也不用指定 background-size
+        
+          background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
+
+      五、灵活的同色系条纹
+
+        1. 同色系条纹
+
+          background: #58a;
+          background-image: repeating-linear-gradient(30deg, ...)
+
+    */
+  </script>
+
+  <style>
+    .div1 {
+      width: 300px;
+      height: 80px;
+      background: linear-gradient(#fb3, #58a);
+    }
+
+    .div2 {
+      width: 300px;
+      height: 80px;
+      background: linear-gradient(#fb3 20%, #58a 80%);
+    }
+
+    .div3 {
+      width: 300px;
+      height: 80px;
+      background: linear-gradient(#fb3 50%, #58a 50%);
+    }
+
+    .div4 {
+      width: 300px;
+      height: 110px;
+      background: linear-gradient(#fb3 50%, #58a 50%);
+      background-size: 100% 40px;
+    }
+
+    .div5 {
+      width: 300px;
+      height: 110px;
+      background: linear-gradient(#fb3 30%, #58a 0);
+      /* background: linear-gradient(#fb3 30%, #58a 30%); */
+      background-size: 100% 40px;
+    }
+
+    .div6 {
+      width: 300px;
+      height: 140px;
+      background: linear-gradient(#fb3 33.3%, #58a 0, #58a 66.6%, yellowgreen 0);
+      background-size: 100% 50px;
+    }
+
+    .div7 {
+      width: 300px;
+      height: 110px;
+      background: linear-gradient(to right, #fb3 30%, #58a 0);
+      /* background: linear-gradient(90deg, #fb3 30%, #58a 0); */
+      background-size: 30px 100%;
+    }
+
+    .div8 {
+      width: 310px;
+      height: 110px;
+      background: linear-gradient(45deg, #fb3 50%, #58a 0);
+      background-size: 30px 30px;
+    }
+
+    .div9 {
+      width: 310px;
+      height: 110px;
+      background: linear-gradient(45deg, #fb3 25%, #58a 0, #58a 50%, #fb3 0, #fb3 75%, #58a 0);
+      background-size: 42.42px 42.42px;
+    }
+
+    .div10 {
+      width: 310px;
+      height: 110px;
+      background: repeating-linear-gradient(45deg, #fb3, #58a 30px);
+    }
+
+    .div11 {
+      width: 310px;
+      height: 110px;
+      background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
+    }
+
+    .div12 {
+      width: 310px;
+      height: 110px;
+      background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
+    }
+
+    .div13 {
+      width: 310px;
+      height: 110px;
+      background: #58a;
+      background-image: repeating-linear-gradient(30deg, hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1) 15px,
+        transparent 0, transparent 30px);
+    }
+  </style>
+</head>
+<body>
+  <div class="div1">过渡</div>
+  <br />
+  <div class="div2">过渡拉近</div>
+  <br />
+  <div class="div3">50% 50% 不过渡</div>
+  <br />
+  <div class="div4">调整尺寸</div>
+  <br />
+  <div class="div5">不等高条纹</div>
+  <br />
+  <div class="div6">多色条纹</div>
+  <br />
+  <div class="div7">垂直条纹</div>
+  <br />
+  <div class="div8">斜向条纹</div>
+  <br />
+  <p>斜向无缝连接原理：</p>
+  <img src="./images/2.斜向无缝连接.jpg" alt="斜向无缝连接">
+  <br />
+  <div class="div9">斜向条纹无缝连接</div>
+  <br />
+  <div class="div10">更好的斜向条纹</div>
+  <br />
+  <div class="div11">再实现 div9</div>
+  <br />
+  <div class="div12">斜向 60°</div>
+  <br />
+  <div class="div13">灵活的同色系条纹</div>
+</body>
+</html>

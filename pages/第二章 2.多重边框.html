@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2.多重边框</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：设置多重边框
+
+    一、box-shadow 方案
+
+      1. 不太为人所知的是 box-shadow，它还接受第四个参数（称作“扩张半径”），通过指定正值或负值，可以让投影面积加大或者减小
+        一个正值的扩张半径加上两个为零的偏移量以及为零的模糊值，得到的“投影”其实就像一道实线边框
+    
+      2. box-shadow 的好处在于，它支持逗号分隔语法，可以创建任意数量的投影
+
+      3. box-shadow 属性加上 inset 关键字，来使投影绘制在元素的内圈
+  
+    二、outline 方案
+
+      1. 如果只需要两层边框，那就可以先设置一层常规边框，再加上 outline（描边）属性来产生外层的边框
+  
+      2. 还可以通过 outline-offset 属性来控制它跟元素边缘之间的间距，这个属性甚至可以接受负值
+  */
+
+  </script>
+
+  <style>
+    .div1 {
+      width: 100px;
+      height: 60px;
+      margin: 25px;
+      background: yellowgreen;
+      box-shadow: 0 0 0 10px #655,
+        0 0 0 15px deeppink,
+        0 2px 5px 15px rgba(0, 0, 0, .6);
+    }
+
+    .div2 {
+      width: 100px;
+      height: 60px;
+      margin: 25px;
+      background: yellowgreen; 
+      border: 10px solid #655; 
+      outline: 5px solid deeppink;
+      outline-offset: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="div1">多重边框</div>
+  <div class="div2">outline</div>
+</body>
+</html>

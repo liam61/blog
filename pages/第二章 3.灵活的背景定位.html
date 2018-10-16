@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>灵活的背景定位</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：让背景图片跟右边缘保持 20px 的偏移量，同时跟底边保持 10px 的偏移量
+
+    一、background-position 的扩展语法方案
+
+      1. background-position 属性已经得到扩展，它允许我们指定背景图片距离任意角的偏移量，只要在偏移量前面指定关键字
+      
+        background: url(code-pirate.svg) no-repeat #58a; 
+        background-position: right 20px bottom 10px;
+
+        回退方法：如果不支持 background-position，可以写到 background 中，如下
+  
+    二、background-origin 方案
+
+      1. background-position 方法不够 DRY：每次改动内边距的值时，我们都需要在三个地方更新这个值！
+
+      2. 每个元素身上都存在三个矩形框
+        border box（边框的外沿框）、padding box（内边距的外沿框）和 content box（内容区的外沿框）
+        默认情况下，background-position 是以 padding box 为准的，这样边框才不会遮住背景图片
+        因此，top  left 默认指的是 padding box 的左上角
+
+      3. background-origin 属性可以用它来改变这种行为
+        如果把它的值改成 content-box，那么background-position 属性中使用的边角关键字将会以内容区的边缘作为基准
+        也就是说，此时背景图片距离边角的偏移量就跟内边距保持一致了
+  
+    三、calc() 方案
+
+      1. calc() 函数允许我们执行此类运算
+  
+  */
+  </script>
+
+  <style>
+    .div1 {
+      max-width: 10em;
+      min-height: 5em;
+      padding: 10px;
+      color: white;
+      background: url(http://csssecrets.io/images/code-pirate.svg)
+                  no-repeat bottom right #58a;
+      background-position: right 20px bottom 10px;
+    }
+
+    .div2 {
+      max-width: 10em;
+      min-height: 5em;
+      padding: 10px;
+      color: white;
+      background: url(http://csssecrets.io/images/code-pirate.svg)
+	                no-repeat bottom right #58a;
+      background-origin: content-box;
+      background-position: right 20px bottom 20px;
+    }
+
+    .div3 {
+      max-width: 10em;
+      min-height: 5em;
+      padding: 10px;
+      color: white;
+      background: url(http://csssecrets.io/images/code-pirate.svg)
+                  no-repeat bottom right #58a;
+      background-position: calc(100% - 20px) calc(100% - 10px);
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="div1">调整背景定位</div>
+  <hr />
+  <img src="./images/1.盒模型.jpg" alt="盒模型">
+  <hr />
+  <div class="div2">background-origin</div>
+  <br />
+  <div class="div3">calc</div>
+</body>
+</html>

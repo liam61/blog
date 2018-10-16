@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>45.打字动画</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：打字动画
+
+    1. step() 函数
+      让容器的宽度成为动画的主体：把所有文本包裹在这个容器中，然后让它的宽度从 0 开始以步进动画的方式
+      一个字一个字地扩张到它应有的宽度，以右边框来模拟光标效果
+      可以通过 ch 单位来定义逐步的过程，这个 ch 新单位，表示“0”字形的宽度
+      在等宽字体中，“0”字形的宽度和其他所有字形的宽度是一样的
+
+    h1 {
+      width: 15ch;
+      border-right: .05em solid;
+      animation: typing 8s steps(15),
+        caret 1s steps(1) infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+    }
+
+    @keyframes caret {
+      50% {
+        border-right-color: transparent;
+      }
+    }
+  
+  */
+  </script>
+
+  <style>
+    h1 {
+      font: bold 200% Consolas, Monaco, monospace;
+      width: 15ch;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .05em solid;
+      animation: typing 6s steps(15),
+        caret 1s steps(1) infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+    }
+
+    @keyframes caret {
+      50% {
+        border-right-color: transparent;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS is awesome!</h1>
+
+  <script src="./js/util.js"></script>
+  <script>
+    $$('h1').forEach(function (h1) {
+      var len = h1.textContent.length,
+        s = h1.style;
+
+      s.width = len + 'ch';
+      s.animationTimingFunction = "steps(" + len + "),steps(1)";
+    });
+  </script>
+</body>
+</html>

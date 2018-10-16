@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>38.根据兄弟元素的数量来设置样式</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：根据兄弟元素的总数来为它们设置样式，如邮件、代办事务、调色板应用程序
+
+    一、:only-child 伪类选择符
+
+      1. :only-child 等效于 :first-child:last-child：如果第一项同时也是最后一项，也就是说它是唯一的那一项
+        li:first-child:nth-last-child(4)：在这个列表正好包含四个列表项时，命中它的每一项
+
+      // 选择有 4 个项的 ul 中第一个项及它的同级兄弟项：即选择有 4 个 li 的 ul 中所有元素（5个项的不选）
+      li:first-child:nth-last-child(4), li:first-child:nth-last-child(4) ~ li {
+        background: rgba(113, 9, 170);
+      }
+  
+      2. scss 代码
+
+        @mixin n-items($n) { 
+            &:first-child:nth-last-child(#{$n}), 
+            &:first-child:nth-last-child(#{$n}) ~ & { 
+                @content; 
+            } 
+        } 
+  
+        // 调用
+        li { 
+          @include n-items(4) {...} 
+        }
+
+    二、根据兄弟元素的数量范围来匹配元素
+
+      1. :nth-child() 还可以穿表达式：an+b，a 表示周期，b 表示周期中的第几个
+      
+      2. 也可以理解为 n 取值 0 ~ +∞（记住 n 是从 0 开始，但列表下标从 1 开始），即命中 b, a+b, 2a+b, ...
+        如果 a 为 1，即 n+b，那么命中序号 >= b的项，即匹配的是从第 b 个开始的所有子元素
+
+        li:nth-child(n+4) {...} // 选择至少包含 4 项的 ul 中第 4 个及以后的元素 
+
+      3. 把表达式 n+4 传给 :nth-last-child()
+
+        // 选择既是第一个也是倒数第 4（3、2、1）个的项及其兄弟项：即当列表 至少 包含四项时，命中所有列表项
+        li:first-child:nth-last-child(n+4), li:first-child:nth-last-child(n+4) ~ li {...}
+
+      4. 同理，-n+b 这种形式的表达式可以选中开头的 b 个元素
+
+        li:nth-child(-n+3) {...} // 选择列表项的前 3 个（无论列表项有几个）
+
+      5. 选择仅当列表中有 3 个或更少的列表项
+
+        li:first-child:nth-last-child(-n+3), li:first-child:nth-last-child(-n+3) ~ li {...}
+
+      6. 将两种技巧结合起来
+
+        // 在列表包含 3 ～ 5 个列表项时命中所有的列表项
+        li:first-child:nth-last-child(n+2):nth-last-child(-n+5), 
+        li:first-child:nth-last-child(n+2):nth-last-child(-n+5) ~ li {...}
+
+  */
+  </script>
+
+  <style>
+    ul {
+      margin: .8em 0;
+    }
+
+    li {
+      display: inline-block;
+      width: 3em;
+      height: 3em;
+      line-height: 3;
+      margin: .1em;
+      background: rgba(255, 85, 136, 0.35);
+      color: #fff;
+      border-radius: .3em;
+      text-align: center;
+    }
+
+    .ul1 li:only-child, .ul1 li:first-child:nth-last-child(3) {
+      background: rgba(255, 85, 136, 1);
+    }
+
+    .ul1 li:first-child:nth-last-child(4),
+    .ul1 li:first-child:nth-last-child(4) ~ li {
+      background: rgba(113, 9, 170);
+    }
+
+    .ul2 li:nth-child(n+4) {
+      background: rgba(17, 6, 175);
+    }
+
+    .ul3 li:first-child:nth-last-child(n+4), .ul3 li:first-child:nth-last-child(n+4) ~ li { 
+      background: rgba(17, 6, 175);
+    }
+
+    .ul4 li:nth-child(-n+3) {
+      background: rgba(236, 236, 9);
+    }
+
+    .ul5 li:first-child:nth-last-child(-n+3), .ul5 li:first-child:nth-last-child(-n+3) ~ li {
+      background: rgba(236, 236, 9);
+    }
+
+    .ul6 li:first-child:nth-last-child(n+3):nth-last-child(-n+5), 
+    .ul6 li:first-child:nth-last-child(n+3):nth-last-child(-n+5) ~ li {
+      background: red;
+    }
+  
+  </style>
+</head>
+<body>
+  <ul class="ul1">
+    <li>1</li>
+  </ul>
+  <ul class="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <ul class="ul1">
+    <li>1</li>
+    <li>2</li>
+  </ul>
+  <ul class="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <ul class="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <br />
+  <ul class="ul2">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <ul class="ul2">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <br />
+  <ul class="ul3">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <ul class="ul3">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <br />
+  <ul class="ul4">
+    <li>1</li>
+    <li>2</li>
+  </ul>
+  <ul class="ul4">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <ul class="ul4">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <br />
+  <ul class="ul5">
+    <li>1</li>
+    <li>2</li>
+  </ul>
+  <ul class="ul5">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <ul class="ul5">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <br />
+  <ul class="ul6">
+    <li>1</li>
+    <li>2</li>
+  </ul>
+  <ul class="ul6">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <ul class="ul6">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <ul class="ul6">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <ul class="ul6">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+</body>
+</html>
