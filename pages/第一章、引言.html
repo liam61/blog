@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>引言</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    一、CSS 发展史
+
+      1. CSS1 的规范由 Håkon Wium Lie 和 Bert Bos 发表于 1996 年，它非常短，而且比较简单
+
+      2. CSS 2 发表于 1998 年，它的定义更加严格，囊括了更多的功能
+
+      3. 在 CSS 2 之后，CSS 工作组意识到这门语言已经变得非常庞大，再也无法把它塞进单个规范中了
+        于是将 CSS 打散到多个不同的规范（模块）中，每个模块都可以独立更新版本
+
+    二、CSS 编码技巧
+
+      1. 尽量减少代码重复：代码可维护性的最大要素是尽量减少改动时要编辑的地方
+        
+        1) 代码易维护 vs. 代码量少：
+        border-width: 10px 10px 10px 0;
+
+        border-width: 10px;
+        border-left-width: 0; // 把它拆成两条声明的话，改起来就容易多了，而且可读性或许更好一些
+      
+        2) currentColor：css 中的变量
+        例如：设置分割线颜色：自动与文本的颜色保持一致
+        hr {
+          height: .5em;
+          background: currentColor;
+        }
+
+        3) 继承 inherit
+        inherit 可以用在任何 css 属性中，而且它总是绑定到父元素的计算值
+        例如：把超链接的颜色设定为与页面中其他文本相同
+        a { color: inherit; }
+      
+      2. 相信你的眼睛，而不是数字
+
+        视觉上的错觉在任何形式的视觉设计中都普遍存在
+
+      3. 关于响应式网页设计
+
+        每个媒体查询都会增加成本，要合理利用
+
+      4. 合理使用简写
+
+        展开式属性与简写属性的配合使用也是非常有用的
+        // background-size 和 background-repeat 的值被重复了两遍
+        background: url(tr.png) no-repeat top right / 2em 2em, 
+                    url(br.png) no-repeat bottom right / 2em 2em;
+
+        background: url(tr.png) top right, 
+                    url(br.png) bottom right;
+        background-size: 2em 2em; 
+        background-repeat: no-repeat;
+
+    三、预处理器
+
+      1. 提供变量、mixin、函数、规则嵌套、颜色处理等
+
+      2. 越来越多的调试工具开始支持 SourceMap。它会告诉浏览器哪些编译生成的 CSS 代码对应哪些预处理器 CSS 代码，精确到行号
+  
+    四、原生预处理器
+
+      1. 自定义样式变量：css变量以 -- 开头
+
+        ul { --accent-color:purple; }
+        li { background: var(--accent-color); }
+
+      2. calc()：处理运算时非常强大
+
+      3. color()函数：提供颜色运算方法
+  */ 
+
+  </script>
+
+  <style>
+    /* 单位改用百分比或者 em 单位，如果改变父级的字号，按钮的尺寸就会随之变化 */
+    /* 为了能复用，半透明的黑色或白色叠加在主色调上，即可产生主色调的亮色和暗色变体 */
+    .btn {
+      padding: .3em .8em;
+      margin: .5em;
+      border: 1px solid rgba(0,0,0,.1);
+      background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);
+      border-radius: .2em;
+      box-shadow: 0 .05em .25em rgba(0,0,0,.5);
+      color: white;
+      text-shadow: 0 -.05em .05em rgba(0,0,0,.5);
+      font-size: 125%;
+      line-height: 1.5;
+    }
+
+    button.ok {
+      background-color: #6b0;
+    }
+
+    button.cancel {
+      background-color: #c00;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn">Yes!</button>
+  <button class="btn ok">ok!</button>
+  <button class="btn cancel">cancel!</button>
+</body>
+</html>

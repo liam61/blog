@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>18.毛玻璃效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：制作毛玻璃效果
+
+    在传统的平面设计中，这个问题的解决方案通常是把文本层所覆盖的那部分图片区域作模糊处理
+    
+    一、借助 blur() 滤镜
+
+      1. 由于我们不能直接对元素本身进行模糊处理，就对一个伪元素进行处理
+        然后将其定位到元素的下层，它的背景将会无缝匹配外层的背景
+        大背景的 background-attachment 值是 fixed
+        模糊效果在接近边缘处会逐渐消退，可让伪元素相对其宿主元素的尺寸再向外扩大至少 20px（即它的模糊半径）
+        
+        main:before {
+          margin: -30px;
+          background: url("http://csssecrets.io/images/tiger.jpg") 0 / cover fixed;
+          filter: blur(20px);
+        }
+  
+  */
+  </script>
+
+  <style>
+    body {
+      min-height: 100vh;
+      line-height: 1.6;
+      margin: 0;
+      padding-top: calc(50vh - 6em);
+      box-sizing: border-box; 
+      font: 150% Baskerville, Palatino, serif;
+    }
+
+    body, main:before {
+      background: url("http://csssecrets.io/images/tiger.jpg") 0 / cover fixed;
+    }
+
+    main {
+      position: relative;
+      max-width: 23em;
+      margin: 0 auto;
+      padding: 1em;
+      background: hsla(0, 0%, 100%, .25) border-box;
+      overflow: hidden;
+      border-radius: .3em;
+      box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
+	    text-shadow: 0 1px 1px hsla(0, 0%, 100%, .3);
+    }
+
+    main:before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      margin: -30px;
+      z-index: -1;
+      -webkit-filter: blur(20px);
+      filter: blur(20px);
+    }
+
+    blockquote { font-style: italic }
+
+    blockquote cite { font-style: normal; }
+  
+  </style>
+</head>
+<body>
+  <main>
+    <blockquote>“The only way to get rid of a temptation is to yield to it. Resist it, and your soul grows sick with longing for the things it has forbidden to itself, with desire for what its monstrous laws have made monstrous and unlawful.”</em>
+      <footer>— <cite>Oscar Wilde, The Picture of Dorian Gray</cite></footer>
+    </blockquote>
+  </main>
+</body>
+</html>

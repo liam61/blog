@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>7.伪随机背景</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：随机背景
+  
+    1. 平常多色背景，不能实现随机
+
+    2. 使用 linear-gradient
+
+      background: linear-gradient(90deg,
+        #fb3 15%, #655 0, #655 40%, #ab4 0, #ab4 65%, hsl(20, 40%, 90%) 0);
+      background-size: 80px, 100%;
+
+    3. 把这组条纹从一个平面拆散为多个图层：一种颜色作为底色，另三种颜色作为条纹，然后再让条纹以不同的间隔进行重复平铺
+      可发现出图案每隔 240px 就会重复一次
+      因此，这里贴片的尺寸实际上就是所有 background-size 的最小公倍数，而 40、60 和 80的最小公倍数正是 240
+    
+      background: hsl(20, 40%, 90%); 
+      background-image: linear-gradient(90deg, #fb3 10px, transparent 0), 
+        linear-gradient(90deg, #ab4 20px, transparent 0), 
+        linear-gradient(90deg, #655 20px, transparent 0); 
+      background-size: 80px 100%, 60px 100%, 40px 100%;
+
+    4. 蝉原则：通过质数来增加随机真实性的想法
+      伪随机：让这种随机性更加真实，我们得把贴片的尺寸最大化
+      为了让最小公倍数最大化，这些数字最好是“相对质数”
+
+      background: hsl(20, 40%, 90%);
+      background-image: linear-gradient(...), linear-gradient(...), linear-gradient(...);
+      background-size: 83px 100%, 61px 100%, 41px 100%;
+    
+  */
+  
+  </script>
+
+  <style>
+    .div1 {
+      width: 500px;
+      height: 80px;
+      background: linear-gradient(90deg,
+        #fb3 15%, #655 0, #655 40%, #ab4 0, #ab4 65%, hsl(20, 40%, 90%) 0);
+      background-size: 80px, 100%;
+    }
+
+    .div2 {
+      width: 500px;
+      height: 80px;
+      background: hsl(20, 40%, 90%); 
+      background-image: linear-gradient(90deg, #fb3 10px, transparent 0), 
+        linear-gradient(90deg, #ab4 20px, transparent 0), 
+        linear-gradient(90deg, #655 20px, transparent 0); 
+      background-size: 80px 100%, 60px 100%, 40px 100%;
+    }
+
+    .div3 {
+      width: 500px;
+      height: 80px;
+      background: hsl(20, 40%, 90%);
+      background-image: 
+        linear-gradient(90deg, #fb3 11px, transparent 0),
+        linear-gradient(90deg, #ab4 23px, transparent 0),
+        linear-gradient(90deg, #655 23px, transparent 0);
+      background-size: 83px 100%, 61px 100%, 41px 100%;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="div1">平常多色背景</div>
+  <br />
+  <div class="div2">拆成多个图层</div>
+  <br />
+  <div class="div3">伪随机</div>
+</body>
+</html>

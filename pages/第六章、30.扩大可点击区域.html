@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>30.扩大可点击区域</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    /*
+    难题：Fitts 法则：人类移动到某个目标区域所需的最短时间是由目标距离与目标宽度之比所构成的对数函数
+
+    可点击区域（热区）向外扩张往往也可以带来可用性的提升
+
+    1. 使用 background-clip 属性可以把背景限制在原本的区域之内
+
+      background-clip: padding-box;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .3) inset;
+  
+    2. before 伪类
+
+      在按钮的上层覆盖一层透明的伪元素，并让伪元素在四个方向上都比宿主元素大出 10px
+
+      button:before {
+        content: '';
+        position: absolute;
+        top: -10px; right: -10px;
+        bottom: -10px; left: -10px;
+      }
+  */
+  </script>
+
+  <style>
+    .btn1 {
+      padding: .3em .5em;
+      border: 10px solid transparent;
+      border-radius: 50%;
+      background: #58a;
+      background-clip: padding-box;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .3) inset;
+      color: white;
+      font: bold 150%/1 sans-serif;
+      cursor: pointer;
+    }
+
+    .btn2 {
+      position: relative;
+      padding: .3em .5em;
+      background: #58a;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, .3);
+      box-shadow: 0 .1em .2em -.05em rgba(0, 0, 0, .5);
+      color: white;
+      font: bold 150%/1 sans-serif;
+      cursor: pointer;
+    }
+
+    .btn2:before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      bottom: -10px;
+      left: -10px;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn1">+</button>
+  <br />
+  <button class="btn2">+</button>
+</body>
+</html>

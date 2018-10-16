@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>44.闪烁效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：制作闪烁效果
+
+    不使用  <blink> 标签
+
+    一、用 CSS 动画实现各种类型的闪烁效果
+
+      1. animation-direction 的唯一作用就是反转每一个循环周期（reverse）
+        或第偶数个循环周期（alternate），或第奇数个循环周期（alternate-reverse）
+        它的伟大之处在于，它会同时反转调整函数，从而产生更加逼真的动画效果
+      
+        .blink-smooth {
+          animation: .5s blink 6;
+          animation-direction: alternate;
+        }
+
+        @keyframes blink {
+          to {
+            color: transparent
+          }
+        }
+  
+  */
+  </script>
+
+  <style>
+    p {
+      padding: 1em;
+      background: gold;
+    }
+
+    .blink-smooth-1 {
+      animation: 1s blink-1 3;
+    }
+
+    .blink-smooth-2 {
+      animation: .5s blink-2 6;
+      animation-direction: alternate;
+    }
+
+    .blink {
+      animation: 1s blink-1 3 steps(1);
+    }
+
+    @keyframes blink-1 {
+      50% {
+        color: transparent
+      }
+    }
+
+    @keyframes blink-2 {
+      to {
+        color: transparent
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>animation-direction属性：</h3>
+  <img src="./images/9.animation-direction属性.png" alt="animation-direction属性" width="750">
+  <br />
+  <p class="blink-smooth-1">Peek-a-boo!</p>
+  <p class="blink-smooth-2">Peek-a-boo!</p>
+  <p class="blink">Peek-a-boo!</p>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>8.连续的图像边框</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：把图片应用为边框，而不是背景
+  
+    1. border 工作原理：九宫格伸缩法：把图片切割成九块，然后把它们应用到元素边框相应的边和角
+  
+    2. 使用两层结构：外层设为背景，内层设置内容
+
+    3. 在背景图片之上，再叠加一层纯白的实色背景，结合 background-clip
+      我们只能在多重背景的最底层设置背景色，因此需要用一道从白色过渡到白色的 CSS 渐变来模拟出纯白实色背景的效果
+      还需把 background-origin 也设置为 border-box，不然会出现诡异的拼接效果
+
+      // 简写后
+      border: 1em solid transparent;
+      background: linear-gradient(white, white) padding-box,
+        url(http://csssecrets.io/images/stone-art.jpg) border-box  0 / cover;
+
+    4. 信封边框样式
+
+      // 简写后
+      border: 1em solid transparent;
+      background: linear-gradient(white, white) padding-box,
+        repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, 
+        #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0 / 6em 6em;
+
+    5. 蚂蚁行军边框，常用来标示选区
+      把信封边框样式条纹转变为黑白两色，并把边框的宽度减少至 1px
+
+      border: 1px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+        repeating-linear-gradient(-45deg, black 0, black 25%, transparent 0, transparent 50%) 0 / .6em .6em;
+      animation: ants 20s linear infinite;
+
+  */
+  
+  </script>
+
+  <style>
+    .div3 {
+      width: 21em;
+      padding: 1em;
+      overflow: hidden;
+      border: 1em solid transparent;
+      background: linear-gradient(white, white), url(http://csssecrets.io/images/stone-art.jpg);
+      background-size: cover;
+      background-clip: padding-box, border-box;
+      background-origin: border-box;
+      resize: both;
+    }
+
+    .div4 {
+      width: 21em;
+      padding: 1em;
+      overflow: hidden;
+      border: 1em solid transparent;
+      background: linear-gradient(white, white) padding-box,
+        repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, 
+          #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0;
+      background-size: 6em 6em;
+      resize: both;
+    }
+
+    .div5 {
+      width: 21em;
+      padding: 1em;
+      border: 1px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+	      repeating-linear-gradient(-45deg, black 0, black 25%, transparent 0, transparent 50%) 0 / .6em .6em;
+      animation: ants 20s linear infinite;
+      resize: both;
+    }
+
+    @keyframes ants {
+      to {
+        background-position: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="div3">Bacon ipsum dolor amet eu adipisicing elit tongue ground round ex fatback proident kielbasa ham hock. Sausage beef beef ribs aliquip t-bone mollit. Quis beef tri-tip sunt, cupim ut magna salami t-bone. Ut laboris bresaola ribeye biltong landjaeger. Chuck pork belly sed sausage.</div>
+  <br/ >
+  <div class="div4">Bacon ipsum dolor amet eu adipisicing elit tongue ground round ex fatback proident kielbasa ham hock. Sausage beef beef ribs aliquip t-bone mollit. Quis beef tri-tip sunt, cupim ut magna salami t-bone. Ut laboris bresaola ribeye biltong landjaeger. Chuck pork belly sed sausage.</div>
+  <br />
+  <div class="div5">Bacon ipsum dolor amet eu adipisicing elit tongue ground round ex fatback proident kielbasa ham hock. Sausage beef beef ribs aliquip t-bone mollit. Quis beef tri-tip sunt, cupim ut magna salami t-bone. Ut laboris bresaola ribeye biltong landjaeger. Chuck pork belly sed sausage.</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>46.状态平滑动画</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：通过动画来响应用户的动作。如 hover 后图片内容移动
+
+    一、手动改变它的 background-position 属性值
+
+      1. 让横向从原本的 0 一直变化到 100%，其实就是动画关键帧
+        但是会有问题，当图片失去 hover 或者聚焦时，就会生硬的返回原来的样子
+
+        .panoramic:hover, .panoramic:focus {
+          animation: panoramic 5s linear infinite alternate;
+        }
+
+        @keyframes panoramic {
+          to { background-position: 100% 0; }
+        }
+    
+    二、animation-play-state
+
+      1. 转换思路：想要的不是在 hover 时应用动画，而是在 失去hover 时暂停动画
+
+        .panoramic2 {
+          animation: panoramic 5s linear infinite alternate;
+          animation-play-state: paused;
+        }
+
+        .panoramic2:hover, .panoramic2:focus {
+          animation-play-state: running;
+        }
+  
+  */
+  </script>
+
+  <style>
+    .panoramic {
+      width: 200px;
+      height: 200px;
+      background: url('http://c3.staticflickr.com/3/2671/3904743709_74bc76d5ac_b.jpg');
+      background-size: auto 100%;
+    }
+
+    .panoramic:hover, .panoramic:focus {
+      animation: panoramic 5s linear infinite alternate;
+    }
+
+    .panoramic2 {
+      width: 200px;
+      height: 200px;
+      background: url('http://c3.staticflickr.com/3/2671/3904743709_74bc76d5ac_b.jpg');
+      background-size: auto 100%;
+      animation: panoramic 5s linear infinite alternate;
+      animation-play-state: paused;
+    }
+
+    .panoramic2:hover, .panoramic2:focus {
+      animation-play-state: running;
+    }
+
+    @keyframes panoramic {
+      to {
+        background-position: 100% 0;
+      }
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="panoramic"></div>
+  <br />
+  <div class="panoramic2"></div>
+</body>
+</html>

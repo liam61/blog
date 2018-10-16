@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>35.交互式的图片对比控件</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：展示两张图片的外观差异，通常是“之前和之后”形式的对比
+
+    一、CSS resize 方案
+
+      1. 用一个 <div> 作为它的容器，再对这个容器应用 resize
+        设置左边的  max-width 指定为 100%
+        自定义拖动按钮，鼠标指针使用 cursor: ew-resize
+
+        .image-slider > div {
+          width: 50%;
+          max-width: 100%;
+          resize: horizontal;
+        }
+
+        .image-slider > div:before {
+          content: '';
+          background: linear-gradient(-45deg, white 50%, transparent 0);
+          background-clip: content-box;
+          cursor: ew-resize;
+          filter: drop-shadow(0 0 2px black);
+        }
+    
+    二、范围输入控件方案
+
+      1. CSS resize 的方案表现很好，但对键盘来说是不可访问的
+
+      2. 用一点脚本，就可以将一个原生的滑块控件（HTML 范围输入控件）覆盖在图片上，用它来控制上层图片的伸缩
+      
+        .image-slider input {
+          position: absolute;
+          left: 0; bottom: 3px;
+        }
+
+        // js
+        var range = document.createElement('input'); 
+        range.type = 'range'; 
+        range.oninput = function(ev) { div.style.width = this.value + '%'; };
+        
+  */
+  </script>
+
+  <style>
+    .image-slider, .image-slider2 {
+      position: relative;
+      display: inline-block;
+    }
+
+    .image-slider > div {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 50%;
+      max-width: 100%;
+      overflow: hidden;
+      resize: horizontal;
+    }
+
+    .image-slider > div:before {
+      content: '';
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 12px; height: 12px;
+      padding: 5px;
+      background: linear-gradient(-45deg, white 50%, transparent 0);
+      background-clip: content-box;
+      cursor: ew-resize;
+      -webkit-filter: drop-shadow(0 0 2px black);
+      filter: drop-shadow(0 0 2px black);
+    }
+
+    img {
+      display: block;
+      user-select: none;
+    }
+  
+    .image-slider2 > div {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 50%;
+      overflow: hidden;
+    }
+
+    .image-slider2 input {
+      position: absolute;
+      width: 100%;
+      left: 0; bottom: 3px;
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="image-slider">
+    <div><img src="http://csssecrets.io/images/adamcatlace-before.jpg" alt="Before" /></div>
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" />
+  </div>
+  <br />
+  <div class="image-slider2">
+    <img src="http://csssecrets.io/images/adamcatlace-before.jpg" alt="Before" />
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" alt="After" />
+  </div>
+
+  <script src="./js/util.js"></script>
+
+  <script>
+    $$('.image-slider2').forEach(function(slider) { 
+      // 创建附加的div元素，并用它包住第一个图片元素 
+      var div = document.createElement('div'); 
+      var img = slider.querySelector('img'); 
+      slider.insertBefore(div, img); 
+      div.appendChild(img); 
+  
+      // 创建滑块 
+      var range = document.createElement('input'); 
+      range.type = 'range'; 
+      range.oninput = function(ev) { 
+          div.style.width = this.value + '%'; 
+      }; 
+      slider.appendChild(range); 
+  });
+  </script>
+</body>
+</html>

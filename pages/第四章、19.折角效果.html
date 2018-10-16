@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>19.折角效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：折角效果
+
+    通常是增加两个三角形：一个三角形用来体现折页的形状，另一个白色的三角形遮住元素的一角，用来模拟翻折所产生的缺口
+
+    一、45°折角的解决方案
+
+      1. 切一个角，再增加一个暗色的三角形来实现翻折效果，两个三角形切口要重合，有 根号2倍 的关系
+  
+    二、其他角度的解决方案
+
+      1. 用 deg 切完角，与另一个三角形重合时要进行微旋转
+        把 transform-origin 设置为 bottom right，让三角形的右下角成为旋转的中心
+
+      2. 不够 DRY，sass 代码
+
+        @mixin folded-corner($background, $size, $angle: 30deg) {
+          position: relative;
+          background: $background; // Fallback
+          background: linear-gradient($angle - 180deg, transparent $size, $background 0);
+          border-radius: .5em;
+          
+          $x: $size / sin($angle);
+          $y: $size / cos($angle);
+          
+          &:before {
+            content: '';
+            position: absolute;
+            width: $y; height: $x;
+            top: 0; right: 0;
+            background: linear-gradient(to left bottom, 
+              transparent 50%, rgba(0,0,0,.2) 0, rgba(0,0,0,.4)) 100% 0 no-repeat; 
+            transform: translateY($y - $x) rotate(2*$angle - 90deg);
+            transform-origin: bottom right;
+            border-bottom-left-radius: inherit;
+            box-shadow: -.2em .2em .3em -.1em rgba(0,0,0,.2);
+          }
+        } 
+        
+        .note { 
+            @include folded-corner(#58a, 2em, 40deg); 
+        }
+        
+  */
+  </script>
+
+  <style>
+    div {
+      width: 12em;
+      line-height: 1.6;
+      background: #58a; /* 回退效果 */
+      padding: 2em;
+      color: white;
+      font: 100% Baskerville, Palatino, serif;
+    }
+
+    .div1 {
+      background: linear-gradient(to left bottom, transparent 50%, rgba(0,0,0,.4) 0) 100% 0 no-repeat,
+        linear-gradient(-135deg, transparent 1.414em, #58a 0);
+      background-size: 2em 2em, auto;
+    }
+
+    .div2 {
+      position: relative;
+      background: linear-gradient(-150deg, transparent 1.5em, #58a 0);
+      border-radius: .5em;
+    }
+
+    .div2:before {
+      content: '';
+      position: absolute;
+      width: 1.73em; height: 3em;
+      top: 0; right: 0;
+      background: linear-gradient(to left bottom, transparent 50%, 
+        rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .4)) 100% 0 no-repeat;
+      transform: translateY(-1.3em) rotate(-30deg);
+      transform-origin: bottom right;
+      border-bottom-left-radius: .5em;
+      box-shadow: -.2em .2em .3em -.1em rgba(0, 0, 0, .15);
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="div1">“The only way to get rid of a temptation is to yield to it.” — Oscar Wilde, The Picture of Dorian Gray</div>
+  <br />
+  <div class="div2">“The only way to get rid of a temptation is to yield to it.” — Oscar Wilde, The Picture of Dorian Gray</div>
+</body>
+</html>

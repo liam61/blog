@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>10.平行四边形</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：创建平行四边形
+
+    可以通过 skew() 的变形属性来对这个矩形进行斜向拉伸：transform: skewX(-45deg);
+    但导致它的内容也发生了斜向变形
+
+    一、嵌套元素方案
+
+      1. 对内容再应用一次反向的 skew() 变形，从而抵消容器的变形效果
+
+        .button { transform: skewX(-45deg); } 
+        .button > div { transform: skewX(45deg); }
+
+    二、伪元素方案
+
+      1. 把所有样式（背景、边框等）应用到伪元素上，然后再对伪元素进行变形
+        给宿主元素应用 position: relative 样式
+        并为伪元素设置 absolute，然后再把所有偏移量设置为零，以便让它在水平和垂直方向上都被拉伸至宿主元素的尺寸
+        用伪元素生成的方块是重叠在内容之上的，一旦给它设置背景，就会遮住内容，设置 z-index: -1
+      
+        .btn2:before {
+          content: '';
+          position: absolute;
+          top: 0; right: 0; bottom: 0; left: 0;
+          z-index: -1;
+          transform: skew(45deg);
+        }
+
+  */
+  </script>
+
+  <style>
+    .btn1 {
+      padding: .5em 1em;
+      border: 0;
+      margin: .5em;
+      transform: skewX(45deg);
+      background: #58a;
+      color: white;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .btn1 > div {
+      transform: skewX(-45deg);
+    }
+
+    .btn2 {
+      position: relative;
+      padding: .5em 1em;
+      border: 0;
+      margin: .5em;
+      background: transparent;
+      color: white;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .btn2:before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+      background: #58a;
+      transform: skew(45deg);
+    }
+  </style>
+</head>
+<body>
+  <button class="btn1"><div>嵌套方案</div></button>
+  <br />
+  <button class="btn2">伪元素方案</button>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>34.滚动提示</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：滚动条对于元素内容可滚动的提示
+
+    1. 当侧边栏的容器还有更多内容时，一层淡淡的阴影会出现在容器的顶部和 / 或底部
+      radial-gradient 径向渐变在顶部和底部添加一条阴影
+      background-attachment 属性增加了一个新的关键字，叫作 local，不过与我们想要的效果相反：
+      当我们滚动到最顶端时，能看到一条阴影；但当我们向下滚动时，这条阴影就消失了
+      我们需要两层背景：一层用来生成那条阴影，另一层基本上就是一个用来遮挡阴影的白色矩形
+
+      ul {
+        background: linear-gradient(white 15px, hsla(0, 0%, 100%, 0)) 0 0 / 100% 50px,
+          radial-gradient(at top, rgba(0, 0, 0, .2), transparent 70%) 0 0 / 100% 15px,
+          linear-gradient(to top, white 15px, hsla(0, 0%, 100%, 0)) bottom / 100% 50px,
+          radial-gradient(at bottom, rgba(0, 0, 0, .2), transparent 70%) bottom / 100% 15px;
+        background-repeat: no-repeat;
+        background-attachment: local, scroll, local, scroll;
+      }
+  
+  */
+  </script>
+
+  <style>
+    ul {
+      display: inline-block;
+      overflow: auto;
+      width: 7.2em;
+      height: 7em;
+      border: 1px solid silver;
+      padding: .3em .5em;
+      list-style: none;
+      margin-top: 2em;
+      font: 100 200%/1.6 'Frutiger LT Std', sans-serif;
+      background: linear-gradient(white 15px, hsla(0, 0%, 100%, 0)) 0 0 / 100% 50px,
+        radial-gradient(at top, rgba(0, 0, 0, .2), transparent 70%) 0 0 / 100% 15px,
+        linear-gradient(to top, white 15px, hsla(0, 0%, 100%, 0)) bottom / 100% 50px,
+        radial-gradient(at bottom, rgba(0, 0, 0, .2), transparent 70%) bottom / 100% 15px;
+      background-repeat: no-repeat;
+      background-attachment: local, scroll, local, scroll;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>Ada Catlace</li>
+    <li>Alan Purring</li>
+    <li>Schrödingcat</li>
+    <li>Tim Purrners-Lee</li>
+    <li>Webkitty</li>
+    <li>Json</li>
+    <li>Void</li>
+    <li>Neko</li>
+    <li>NaN</li>
+    <li>Cat5</li>
+    <li>Vector</li>
+  </ul>
+</body>
+</html>

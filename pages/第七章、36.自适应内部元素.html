@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>36.自适应内部元素</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：让 width 自适应
+
+    如果不给元素指定一个具体的 height，它就会自动适应其内容的高度
+
+    一、width 和 height 新属性
+
+      1. width 和 height 属性定义了一些新的关键字，其中最有用的应该就是 min-content
+        使用简单的 CSS 代码就可以把 figure 设置为恰当的宽度，并让它水平居中
+
+        figure {
+          max-width: min-content;
+          margin: auto;
+        }
+  
+  */
+  </script>
+
+  <style>
+    figure {
+      max-width: 300px; /* 回退 */
+      max-width: min-content;
+      margin: auto;
+      padding: 10px;
+      border: 1px solid silver;
+    }
+
+    figure > img {
+      max-width: inherit;
+    }
+  </style>
+</head>
+<body>
+  <p>Let’s assume we have some text here. Bacon ipsum dolor sit amet turkey veniam shankle, culpa short ribs kevin
+    t-bone occaecat.</p>
+  <figure>
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" />
+    <figcaption>
+      The great Sir Adam Catlace was named after Countess Ada Lovelace, the first programmer ever.
+    </figcaption>
+  </figure>
+  <p>We also have some more text here. Et laborum venison nostrud, ut veniam sint kielbasa ullamco pancetta.</p>
+</body>
+</html>

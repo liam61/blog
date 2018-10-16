@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>32.通过阴影来弱化背景.1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：制作一层半透明的遮罩
+
+    一、伪元素方案
+
+      1. 伪元素来消除额外的 HTML 元素
+        把遮罩层交给这个元素自己的 :before 伪元素来实现
+        有一个问题，伪元素无法绑定独立的 JavaScript 事件处理函数
+  
+    二、box-shadow 方案
+
+      1. 换用视口单位来一劳永逸地解决它，能确保“遮罩层”总是可以覆盖（甚至超出）视口
+        1vmax 相当于 1vw 和 1vh 两者中的较大值
+        满足我们需求的最小值就是 50vmax，由于投影是同时向四个方向扩展的，这个遮罩层的最终尺寸将是 100vmax 加上元素本身的尺寸
+        当我们滚动页面时，遮罩层的边缘就露出来了，除非给它加上 position:  fixed;
+    
+    三、backdrop 方案（不完全支持）
+
+      1. 使用模态的 <dialog> 元素（<dialog> 元素可以由它的 showModal() 方法显示出来）
+        那么根据浏览器的默认样式，它会自带一个遮罩层。借助 ::backdrop 伪元素
+
+        见 第六章 32.通过阴影来弱化背景.2.html
+      
+        dialog.showModal()
+        dialog.close()
+  */
+  </script>
+
+  <style>
+    .lightbox {
+      position: fixed;
+      top: 50%; left: 50%;
+      margin: -200px;
+      box-shadow: 0 0 0 50vmax rgba(0,0,0,.8);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="div1">
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" class="lightbox" />
+    <p>Bacon ipsum dolor amet consectetur
+      short loin
+      ut
+      tri-tip
+      alcatra
+      ground round
+      jowl
+      beef
+      meatloaf
+      in
+      pork. Elit
+      chicken
+      ea
+      spare ribs. Shank
+      andouille
+      ex
+      boudin
+      picanha
+      turkey
+      esse. Do
+      doner
+      fugiat
+      tongue.</p>
+    <p>Pork chop
+      ad
+      cow
+      spare ribs
+      capicola
+      ball tip
+      alcatra
+      cillum
+      magna
+      short ribs
+      tempor. Pork loin
+      do
+      sint
+      magna
+      ea
+      pork belly
+      duis. Shoulder
+      ullamco
+      chicken
+      porchetta, ham
+      anim
+      veniam
+      venison. Fugiat
+      tenderloin
+      venison, turducken
+      non
+      pork chop
+      ribeye
+      enim. Beef
+      turkey
+      salami, ipsum
+      prosciutto
+      commodo
+      cupidatat. Tri-tip
+      ham hock
+      non
+      brisket
+      pig
+      cupim commodo
+      ball tip
+      nulla
+      turkey
+      kielbasa
+      corned beef
+      flank. Hamburger
+      pariatur
+      ham, porchetta
+      cupidatat
+      sirloin
+      pork loin
+      quis
+      nulla
+      culpa
+      tail
+      esse.</p>
+    <p>Chuck
+      filet mignon
+      flank
+      pork chop
+      mollit
+      enim
+      veniam
+      sed
+      pork loin
+      aliquip
+      sausage
+      prosciutto
+      in
+      deserunt. Nostrud
+      porchetta
+      non
+      nulla
+      sunt. Cupim et
+      velit
+      picanha
+      laborum salami
+      capicola
+      exercitation
+      alcatra
+      sausage
+      cillum
+      shoulder
+      minim
+      esse. Pig
+      boudin
+      aliquip
+      aute, tail
+      ut
+      cow
+      incididunt
+      short loin
+      aliqua.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>16.不规则投影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：不规则的投影（border-radius 会忽视透明部分）
+
+    一、滤镜效果，使用 filter 新属性、
+
+      1. drop-shadow() 滤镜可接受的参数基本上跟 box-shadow 属性是一样的
+        但不包括扩张半径，不包括 inset 关键字，也不支持逗号分割的多层投影语法
+        CSS 滤镜最大的好处在于，它们可以平稳退化：当浏览器不支持时，不会出现问题，只不过没有任何效果而已
+        常用滤镜：blur()、grayscale() 以及我们需要的 drop-shadow()，可以连起来一起用
+      
+        filter: drop-shadow(.1em .1em .3em rgba(0, 0, 0, .5));
+  
+  */
+  </script>
+
+  <style>
+    div {
+      position: relative;
+      display: inline-flex;
+      width: 8em;
+      height: 6em;
+      line-height: 2;
+      margin: .6em;
+      margin-right: 1em;
+      flex-direction: column;
+      justify-content: center;
+      vertical-align: bottom;
+      box-sizing: border-box;
+      background: #fb3;
+      /* box-shadow: .1em .1em .3em rgba(0, 0, 0, .5); */
+      filter: drop-shadow(.1em .1em .3em rgba(0, 0, 0, .5));
+      -webkit-filter: drop-shadow(.1em .1em .3em rgba(0, 0, 0, .5));
+      font: 1.6 Baskerville, Palatino, serif;
+	    text-align: center;
+    }
+
+    .speech {
+      border: .3em;
+    }
+
+    .speech:before {
+      content: '';
+      position: absolute;
+      top: 1em;
+      right: -.7em;
+      width: 0;
+      height: 0;
+      border: 1em solid transparent;
+      border-left-color: #fb3;
+      border-right-width: 0;
+    }
+
+    .dotted {
+      background: transparent;
+      border: .3em dotted #fb3;
+    }
+
+    .cutout {
+      background: linear-gradient(135deg, transparent 15px, #fb3 0) top left,
+        linear-gradient(-135deg, transparent 15px, #fb3 0) top right,
+        linear-gradient(-45deg, transparent 15px, #fb3 0) bottom right,
+        linear-gradient(45deg, transparent 15px, #fb3 0) bottom left;
+      background-size: 50% 50%;
+      background-repeat: no-repeat;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="speech">Speech bubble</div>
+  <div class="dotted">Dotted border</div>
+  <div class="cutout">Cutout corners</div>
+</body>
+</html>

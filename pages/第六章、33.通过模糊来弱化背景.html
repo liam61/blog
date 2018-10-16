@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>33.通过模糊来弱化背景</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：当我们的视线聚焦在距离较近的物体上时，远处的背景就是虚化的
+
+    1. 除了关键元素之外的一切都包裹起来，这样就可以只对这个容器元素进行模糊处理了
+      CSS 滤镜是可以设置动画的
+
+      main.de-emphasized {
+        filter: blur(3px);
+      }
+      dialog:not([open]) {
+        display: none;
+      }
+
+      // js
+      $('button').onclick = function () {
+        dialog.setAttribute('open', '');
+      }
+
+      dialog.onclick = function () {
+        dialog.close();
+        // dialog.removeAttribute('open');
+      }
+
+  */
+  </script>
+
+  <style>
+    main {
+      transition: .6s;
+      background: white;
+    }
+
+    main.de-emphasized {
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+    }
+
+    dialog {
+      position: fixed;
+      top: 50%; left: 50%;
+      z-index: 1;
+      width: 10em;
+      padding: 2em;
+      margin: -5em;
+      border: 1px solid silver;
+      border-radius: .5em;
+      box-shadow: 0 .2em .5em rgba(0, 0, 0, .5),
+        0 0 0 100vmax rgba(0, 0, 0, .2);
+    }
+
+    dialog:not([open]) {
+      display: none;
+    }
+
+    body {
+      font: 150%/1.6 Baskerville, Palatino, serif;
+    }
+  </style>
+</head>
+<body>
+  <dialog>O HAI, I’m a dialog. Click on me to dismiss.</dialog>
+  <main>
+    <button>Show dialog</button>
+    <p>Bacon ipsum dolor sit amet consectetur
+      short loin
+      ut
+      tri-tip
+      alcatra
+      ground round
+      jowl
+      beef
+      meatloaf
+      in
+      pork. Elit
+      chicken
+      ea
+      spare ribs. Shank
+      andouille
+      ex
+      boudin
+      picanha
+      turkey
+      esse. Do
+      doner
+      fugiat
+      tongue.</p>
+    <p>Pork chop
+      ad
+      cow
+      spare ribs
+      capicola
+      ball tip
+      alcatra
+      cillum
+      magna
+      short ribs
+      tempor. Pork loin
+      do
+      sint
+      magna
+      ea
+      pork belly
+      duis. Shoulder
+      ullamco
+      chicken
+      porchetta, ham
+      anim
+      veniam
+      venison. Fugiat
+      tenderloin
+      venison, turducken
+      non
+      pork chop
+      ribeye
+      enim. Beef
+      turkey
+      salami, ipsum
+      prosciutto
+      commodo
+      cupidatat. Tri-tip
+      ham hock
+      non
+      brisket
+      pig
+      cupim commodo
+      ball tip
+      nulla
+      turkey
+      kielbasa
+      corned beef
+      flank. Hamburger
+      pariatur
+      ham, porchetta
+      cupidatat
+      sirloin
+      pork loin
+      quis
+      nulla
+      culpa
+      tail
+      esse.</p>
+    <p>Chuck
+      filet mignon
+      flank
+      pork chop
+      mollit
+      enim
+      veniam
+      sed
+      pork loin
+      aliquip
+      sausage
+      prosciutto
+      in
+      deserunt. Nostrud
+      porchetta
+      non
+      nulla
+      sunt. Cupim et
+      velit
+      picanha
+      laborum salami
+      capicola
+      exercitation
+      alcatra
+      sausage
+      cillum
+      shoulder
+      minim
+      esse. Pig
+      boudin
+      aliquip
+      aute, tail
+      ut
+      cow
+      incididunt
+      short loin
+      aliqua.</p>
+  </main>
+  
+  <script src="./js/util.js"></script>
+  <script>
+    function $(sel) {
+      return document.querySelector(sel);
+    }
+
+    var dialog = $('dialog');
+    var main = $('main');
+
+    $('button').onclick = function () {
+
+      dialog.setAttribute('open', '');
+      main.classList.add('de-emphasized');
+    }
+
+    dialog.onclick = function () {
+      if (dialog.close) {
+        dialog.close();
+      } else {
+        dialog.removeAttribute('open');
+      }
+
+      main.classList.remove('de-emphasized');
+    }
+  </script>
+</body>
+</html>

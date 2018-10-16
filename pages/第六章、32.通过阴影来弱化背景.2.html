@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>32.通过阴影来弱化背景.2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：制作一层半透明的遮罩
+
+    三、backdrop 方案（不完全支持）
+
+      1. 使用模态的 <dialog> 元素（<dialog> 元素可以由它的 showModal() 方法显示出来）
+        那么根据浏览器的默认样式，它会自带一个遮罩层。借助 ::backdrop 伪元素
+
+        dialog.showModal()
+        dialog.close()
+
+  */
+  </script>
+
+  <style>
+    dialog::backdrop {
+      background: rgba(0,0,0,.8)
+    }
+  </style>
+</head>
+<body>
+  <button onclick="document.querySelector('#modal').showModal()">Click me</button>
+  <dialog id="modal">
+  O HAI!
+  <button onclick="this.parentNode.close()">Close</button>
+  </dialog>
+</body>
+</html>

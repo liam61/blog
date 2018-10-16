@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>1.半透明边框</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：设置半透明的边框
+
+    1. 默认情况下，背景会延伸到边框所在的区域下层，所以一般的
+    
+      border: 10px solid hsla(0, 0%, 100%, .5); // 不会达到透明边框的效果
+  
+    2. 通过 background-clip 属性来调整上述默认行为
+      属性的初始值是 border-box，意味着背景会被元素的边框的外沿框裁切掉
+      现改变它的值设为 padding-box，这样浏览器就会用内边距的外沿来把背景裁切掉
+
+      background-clip: padding-box;
+  
+  */
+  </script>
+
+  <style>
+    body {
+      background: url('http://csssecrets.io/images/stone-art.jpg');
+    }
+
+    div {
+      max-width: 20em;
+      padding: 2em;
+      margin: 2em auto 0;
+      border: 10px solid hsla(0, 0%, 100%, .5);
+      background: white;
+      background-clip: padding-box;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    透明边框 this is a test for padding-box 
+    enen
+  </div>
+</body>
+</html>

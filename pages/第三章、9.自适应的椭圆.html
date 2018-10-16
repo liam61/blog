@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>9.自适应的椭圆</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：元素设置为圆形
+    一、圆
+
+      1. border-radius，有一个鲜为人知的真相：它可以单独指定水平和垂直半径，只要用一个斜杠（/）分隔这两个值即可
+        它不仅可以接受长度值，还可以接受百分比值
+
+        border-radius: 50%;
+
+      2. 椭圆圆角
+
+        border-radius: 50% / 100px;
+
+      3. 椭圆
+
+        width: 16em;
+        height: 10em;
+        border-radius: 50%;
+
+    二、半椭圆
+
+      1. border-radius 还有展开的属性
+
+        border-top-left-radius
+        border-top-right-radius
+        border-bottom-right-radius
+        border-bottom-left-radius
+
+      2. border-radius传参个数，见下方原理
+
+        border-radius: 10px / 5px 20px; 效果同 10px 10px 10px 10px / 5px 20px 5px 20px;
+
+    三、四分之一椭圆
+
+      1. 要创建一个四分之一椭圆，其中一个角的水平和垂直半径值都需要是 100%，而其他三个角都不能设为圆角
+        
+        border-radius: 100% 0 0 0;
+
+    四、糖果按钮：http://simurai.com/archive/buttons/
+  
+  */
+  
+  </script>
+
+  <style>
+    .div1 {
+      width: 12em;
+      height: 12em;
+      border-radius: 50%;
+      background: #fb3;
+    }
+
+    .div2 {
+      width: 12em;
+      height: 12em;
+      border-radius: 50% / 60px;
+      background: #fb3;
+    }
+
+    .div3 {
+      width: 12em;
+      height: 8em;
+      border-radius: 50%;
+      background: #fb3;
+    }
+
+    .half {
+      width: 12em;
+      height: 8em;
+      margin: 1em;
+      background: #fb3;
+      border-radius: 50% / 100% 100% 0 0;
+    }
+
+    .div5 { border-radius: 50% / 0 0 100% 100%; }
+    .div6 { border-radius: 100% 0 0 100% / 50%; }
+    .div7 { border-radius: 0 100% 100% 0 / 50%; }
+
+    .e1of4 {
+      width: 12em;
+      height: 8em;
+      margin: 1em;
+      background: #fb3;
+      border-radius: 100% 0 0 0;
+    }
+
+    .div9  { border-radius: 0 100% 0 0; }
+    .div10 { border-radius: 0 0 100% 0; }
+    .div11 { border-radius: 0 0 0 100%; }
+  </style>
+</head>
+<body>
+  <div class="div1">圆</div>
+  <br />
+  <div class="div2">椭圆圆角</div>
+  <br />
+  <div class="div3">椭圆</div>
+  <br />
+  <p>border-radius传参个数解释图：</p>
+  <img src="./images/4.border-radius传参个数解释图.jpg" alt="border-radius传参个数解释图" width="750" height="270">
+  <br />
+  <div class="half div4">半椭圆1</div>
+  <br />
+  <div class="half div5">半椭圆2</div>
+  <br />
+  <div class="half div6">半椭圆3</div>
+  <br />
+  <div class="half div7">半椭圆4</div>
+  <br />
+  <div class="e1of4 div8">四分之一椭圆1</div>
+  <br />
+  <div class="e1of4 div9">四分之一椭圆2</div>
+  <br />
+  <div class="e1of4 div10">四分之一椭圆3</div>
+  <br />
+  <div class="e1of4 div11">四分之一椭圆4</div>
+</body>
+</html>

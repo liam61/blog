@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>21.插入换行</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：键值对一行，插入换行，如个人简历
+
+    一、使用伪类换行
+
+      1. 有个 Unicode 字符是专门代表换行符的：0x000A，在 CSS 中，这个字符可以写作 "\000A"，或简化为 "\A"
+        保留源代码中的这些空白符和换行：white-space: pre;
+
+        dd + dt:before { // 不同行
+          content: '\A';
+          white-space: pre;
+        }
+
+        dd + dd:before { // 同行
+          content: ', ';
+        }
+  
+  */
+  </script>
+
+  <style>
+    dt, dd {
+      display: inline;
+      margin: 0;
+    }
+
+    dd {
+      font-weight: 600;
+    }
+
+    dd + dt:before {
+      content: '\A';
+      white-space: pre;
+    }
+
+    dd + dd:before {
+      content: ', ';
+      font-weight: normal;
+      margin-left: -.25em;
+    }
+  </style>
+</head>
+<body>
+  <dl>
+    <dt>Name:</dt>
+    <dd>Lea Verou</dd>
+
+    <dt>Email:</dt>
+    <dd>lea@verou.me</dd>
+    <dd>leaverou@mit.edu</dd>
+    <dd>lawler61@163.com</dd>
+
+    <dt>Location:</dt>
+    <dd>Earth</dd>
+  </dl>
+</body>
+</html>

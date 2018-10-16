@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>22.文本行的斑马条纹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：斑马条纹
+
+    常用 :nth-child() :nth-of-type()，但不理想，性能不好，健壮性不高
+
+    一、对整个元素设置统一的背景图像，一次性加上所有的斑马条纹
+
+      1. 以在 CSS 中用渐变直接生成背景图像，而且可以用 em 单位来设定背景尺寸，这样背景就可以自动适应 font-size 的变化了
+        创建出水平条纹背景。它的 background-size 需要设置为 line-height 的两倍
+        如果有内边距则会显示错位：改变 background-position，以 content box 的外沿作为基准
+      
+        pre {
+          background-image: linear-gradient(rgba(120, 0, 0, .1) 50%, transparent 0);
+          background-size: auto 3em;
+          background-origin: content-box;
+        }
+
+  */
+  </script>
+
+  <style>
+    pre {
+      padding: .5em;
+      line-height: 1.5;
+      background: hsl(20, 50%, 95%);
+      background-image: linear-gradient(rgba(120, 0, 0, .1) 50%, transparent 0);
+      background-size: auto 3em;
+      background-origin: content-box;
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    code {
+      font: inherit
+    }
+  </style>
+</head>
+<body>
+  <pre>
+    <code>while (true) {
+    var d = new Date();
+    if (d.getDate()==1 &amp;&amp;
+        d.getMonth()==3) {
+      alert("TROLOLOL");
+    }
+  }</code>
+  </pre>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>11.菱形图片</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：菱形图片
+
+    一、基于变形的方案
+
+      1. 需要把图片用一个 <div> 包裹起来，然后对其应用相反的 rotate() 变形样式
+        不过这样每个角有空白，需放大图片
+
+        .div1 {
+          transform: rotate(45deg);
+        }
+        .div1 > img { 
+          max-width: 100%; 
+          transform: rotate(-45deg) scale(1.42); 
+        }
+    
+    二、裁切路径方案
+
+      1. 主要思路是使用 clip-path 属性（不完全支持）
+  
+  */
+  </script>
+
+  <style>
+    .div1 {
+      width: 250px;
+      height: 250px;
+      margin: 100px;
+      transform: rotate(45deg);
+      overflow: hidden;
+    }
+
+    .div1 img {
+      position: relative;
+      max-width: 100%;
+      transform: rotate(-45deg) scale(1.42);
+      z-index: -1;
+    }
+
+    .img2, .img3 {
+      max-width: 250px;
+      margin: 20px;
+      -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      transition: 1s;
+    }
+
+    .img2:hover, .img3:hover {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="div1">
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" />
+  </div>
+  <br/ >
+  <img class="img2" src="http://csssecrets.io/images/adamcatlace.jpg" />
+  <img class="img3" src="http://csssecrets.io/images/adam-sleeping.jpg" />
+</body>
+</html>

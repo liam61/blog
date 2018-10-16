@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>29.选用合适的鼠标光标</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：鼠标指针的用途
+
+    1. 提示禁用状态
+
+      cursor: not-allowed
+  
+    2. 隐藏鼠标光标，观看视频的时候可以把光标隐藏
+    
+      video {
+        cursor: url(transparent.gif);
+        cursor: none;
+      }
+  
+  */
+  </script>
+
+  <style>
+    button:disabled, [disabled], [aria-disabled="true"] {
+      cursor: not-allowed;
+    }
+
+    textarea:hover, textarea:focus {
+      cursor: ns-resize;
+    }
+  
+  </style>
+</head>
+<body>
+  <p>鼠标光标：</p>
+  <img src="./images/7.鼠标光标.jpg" alt="鼠标光标" width="600">
+  <br />
+  <button disabled>Disabled button</button>
+  <br />
+  <br />
+  <textarea cols="30" rows="10"></textarea>
+</body>
+</html>

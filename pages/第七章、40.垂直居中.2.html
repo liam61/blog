@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>40.梯型标签页.2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：块级和行内元素垂直居中
+      
+    四、基于视口单位的解决方案
+
+      1. 不使用绝对定位，仍然可以采用 translate() 技巧
+        vw 是与视口宽度相关的。与常人的直觉不符的是，1vw 实际上表示视口宽度的 1%，而不是 100%
+        
+        div { 
+          width: 18em; 
+          padding: 1em 1.5em; 
+          margin: 50vh auto 0; 
+          transform: translateY(-50%); 
+        }
+
+  */
+  </script>
+
+  <style>
+    body {
+      background: lightcoral;
+    }
+
+    main {
+      width: 18em; 
+      padding: 1em 1.5em; 
+      margin: 50vh auto 0; 
+      transform: translateY(-50%);
+      background: aqua;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>视口单位</main>
+</body>
+</html>

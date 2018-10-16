@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>47.沿环形路径平移动画</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：沿环形路径平移动画（不旋转移动体本身）
+
+    一、需要两个元素的解决方案
+
+      1. 外层对于中心旋转，会印象到本身移动体旋转
+        那么内层元素就进行反旋转，来抵消外层的形变效果
+
+        animation-direction 使用 reverse 可以得到原始动画的反向版本
+
+    二、单个元素的解决方案
+
+      1. 只用一个元素的话就需要多个旋转点（transform-origin），但 transform-origin 只是一个语法糖而已，总是可以用 translate() 来代替它
+        如下面两段代码是等效的，见下面原理：
+      
+        transform: rotate(30deg); 
+        transform-origin: 200px 300px;
+
+        transform: translate(200px, 300px) 
+                  rotate(30deg) 
+                  translate(-200px, -300px); 
+        transform-origin: 0 0;
+
+
+        优化前：将外层相对于自己的中心（50%, 150px），从 0° 旋转到 360°，内层相对于自己的中心（50%,50%），从 360° 旋转到 0°
+        @keyframes spin {
+          from {
+            transform: translate(50%, 150px) 
+            rotate(0turn) 
+            translate(-50%, -150px); 
+          }
+
+          to { 
+            transform: translate(50%, 150px) 
+            rotate(1turn) 
+            translate(-50%, -150px); 
+          } 
+        }
+
+        @keyframes spin-reverse { 
+          from { 
+            transform: translate(50%, 50%) 
+            rotate(1turn) 
+            translate(-50%, -50%); 
+          } 
+          to {
+            transform: translate(50%, 50%) 
+            rotate(0turn) 
+            translate(-50%, -50%); 
+          } 
+        }
+
+      2. 小技巧：将两套旋转都添加给外层，即外层设有 2 个 旋转点
+      又因水平方向都是位移 50%，可以相互抵消，所以只用考虑垂直方向
+      再把头像放在圆心并以此作为起点，我们就可以消除最开始的那两个位移操作
+
+        .avatar {
+          animation: spin 6s infinite linear;
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0turn)
+            translateY(-150px) translateY(50%)
+            rotate(1turn)
+          }
+
+          to {
+            transform: rotate(1turn)
+            translateY(-150px) translateY(50%)
+            rotate(0turn)
+          }
+        }
+  
+  */
+  </script>
+
+  <style>
+    .path {
+      width: 260px;
+      height: 260px;
+      padding: 20px;
+      border-radius: 50%;
+      background: #fb3;
+    }
+
+    .avatar {
+      width: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      animation: spin 6s infinite linear;
+      transform-origin: 50% 130px;
+    }
+
+    .avatar img {
+      display: block;
+      width: inherit;
+      animation: inherit;
+      animation-direction: reverse;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    .path2 {
+      width: 300px;
+      height: 300px;
+      padding: 20px;
+      margin: 100px auto;
+      border-radius: 50%;
+      background: #fb3;
+    }
+
+    .avatar2 {
+      display: block;
+      width: 50px;
+      margin: calc(50% - 25px) auto 0;
+      border-radius: 50%;
+      overflow: hidden;
+      animation: spin2 6s infinite linear;
+    }
+
+    @keyframes spin2 {
+      from {
+		    transform: rotate(0turn)
+		    translateY(-150px) translateY(50%)
+		    rotate(1turn)
+	    }
+
+	    to {
+		    transform: rotate(1turn)
+		    translateY(-150px) translateY(50%)
+		    rotate(0turn)
+	    }
+    }
+  </style>
+</head>
+<body>
+  <div class="path">
+    <div class="avatar">
+      <img src="http://lea.verou.me/book/adamcatlace.jpg" />
+    </div>
+  </div>
+  <br />
+  <p>用transform代替transform-origin原理：</p>
+    <img src="./images/10.用transform代替transform-origin原理图.png" alt="用transform代替transform-origin原理" width="800">
+  <br />
+  <br />
+  <div class="path2">
+    <img src="http://lea.verou.me/book/adamcatlace.jpg" class="avatar2" />
+  </div>
+</body>
+</html>

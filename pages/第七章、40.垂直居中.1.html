@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>40.梯型标签页.1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：块级和行内元素垂直居中
+
+    一些不为人知的居中方法：https://css-tricks.com/centering-in-the-unknown/
+
+    一、表格布局法：利用表格的显示模式
+
+    二、行内块法：hack 的味道很浓
+  
+    三、基于绝对定位的解决方案
+
+      1. 要求元素具有固定的宽度和高度
+
+        div { 
+          width: 18em;
+          height: 6em;
+          top: 50%; left: 50%;
+          margin-top: -3em;
+          margin-left: -9em;
+        }
+
+      2. 借助强大的 calc() 函数
+
+        div { 
+          position: absolute;
+          width: 18em;
+          height: 6em;
+          top: calc(50% - 3em);
+          left: calc(50% - 9em);
+        }
+
+      3. translate() 变形函数
+
+        div { 
+          position: absolute; 
+          top: 50%; left: 50%; 
+          transform: translate(-50%, -50%); 
+        }
+      
+    四、基于视口单位的解决方案
+
+      1. 不使用绝对定位，仍然可以采用 translate() 技巧
+        vw 是与视口宽度相关的。与常人的直觉不符的是，1vw 实际上表示视口宽度的 1%，而不是 100%
+      
+        见 第七章 41.垂直居中.2.html
+    
+    五、基于 Flexbox 的解决方案（最佳）
+      
+      1. 待居中元素的父元素设置 display: flex
+
+        main {
+          display: flex;
+          margin: 0;
+        }
+
+        div {
+          margin: auto;
+        }
+
+      2. align-items 和 justify-content 属性
+
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+  */
+  </script>
+
+  <style>
+    main {
+      position: relative;
+      width: 100%;
+      height: 14em;
+      margin-bottom: 2em;
+      background: lightcoral;
+    }
+
+    div {
+      width: 18em;
+      height: 4em;
+      line-height: 4;
+      background: aqua;
+      text-align: center;
+    }
+    
+    .div1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -2em;
+      margin-left: -9em;
+    }
+
+    .div2 {
+      position: absolute;
+      top: calc(50% - 2em);
+      left: calc(50% - 9em);
+    }
+
+    .div3 {
+      position: absolute;
+      top: 50%;
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+    }
+
+    main:nth-child(5) {
+      display: flex;
+      margin: 0;
+      margin-bottom: 2em;
+    }
+
+    .div5 {
+      margin: auto;
+    }
+
+    main:nth-child(6) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="div1">垂直居中，元素具有固定的宽度和高度</div>
+  </main>
+  <main>
+    <div class="div2">元素具有固定的宽度和高度 calc()</div>
+  </main>
+  <main>
+    <div class="div3">translate()变形函数，未知宽高</div>
+  </main>
+  <h1>基于视口单位的解决方案:见 第七章 41.垂直居中.2.html</h1>
+  <main>
+    <div class="div5">flex布局</div>
+  </main>
+  <main>
+    <div class="div6">align-items 和 justify-content</div>
+  </main>
+</body>
+</html>

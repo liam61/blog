@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>15.单侧投影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script>
+  /*
+    难题：制作单侧投影
+
+    一、单侧投影
+
+      1. 利用 box-shadow 鲜为人知的第四个长度参数
+        称作扩张半径，这个参数会根据你指定的值去扩大或（当指定负值时）缩小投影的尺寸
+        例如，一个 -5px 的扩张半径会把投影的宽度和高度各减少 10px（即每边各 5px）
+      
+        box-shadow: 0 5px 4px -4px black;
+
+    二、邻边投影
+
+      1. 需要两个偏移量，它们的值需要大于或等于模糊半径的一半，因为我们希望把投影藏进另外两条边之内
+      
+        box-shadow: 3px 3px 6px -3px black;
+    
+    三、双侧投影
+
+      1. 唯一的办法是用两块投影（每边各一块）来达到目的
+  
+  */
+  </script>
+
+  <style>
+    .div1 {
+      width: 120px;
+      height: 120px;
+      background: #fb3;
+      box-shadow: 0 5px 4px -4px black;
+    }
+
+    .div2 {
+      width: 120px;
+      height: 120px;
+      background: #fb3;
+      box-shadow: 3px 3px 6px -3px black;
+    }
+
+    .div3 {
+      width: 120px;
+      height: 120px;
+      background: #fb3;
+      box-shadow: 5px 0 5px -5px black, -5px 0 5px -5px black;
+    }
+  
+  </style>
+</head>
+<body>
+  <p>box-shadow原理：</p>
+  <img src="./images/6.box-shadow原理.jpg" alt="box-shadow原理" width="680" height="350">
+  <br />
+  <div class="div1"></div>
+  <br />
+  <div class="div2"></div>
+  <br />
+  <div class="div3"></div>
+</body>
+</html>

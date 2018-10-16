@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>37.精确控制表格列宽</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /*
+    难题：精确控制表格列宽
+
+    一、table-layout
+
+      1. 一个鲜为人知的属性，叫作 table-layout，它的默认值是 auto，其行为模式被称作自动表格布局算法
+        它还接受另外一个值 fixed，这个值的行为要明显可控一些
+
+      2. 只需要对 <table> 元素或其他具有 display: table 样式的元素应用这个属性即可
+        所有的 td 宽都是统一计算好的
+
+        table {
+          table-layout: fixed;
+          border-collapse: collapse;
+        }
+
+  */
+  </script>
+
+  <style>
+    body {
+      background: #ddd;
+    }
+
+    section {
+      width: 500px;
+      margin: 2em;
+      background: white;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-bottom: 1em;
+      width: 100%;
+    }
+
+    section + section table {
+      table-layout: fixed;
+    }
+
+    td {
+      border: 1px solid #aaa;
+    }
+
+    td.preformatted {
+      white-space: pre;
+      font-family: Consolas, Monaco, monospace;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h1>With table-layout: auto</h1>
+    <div>
+      <table>
+        <tr>
+          <td>If we don’t…</td>
+          <td>specify a cell width, they will be assigned one that depends on their contents. Notice how the cell with
+            the more content here is much wider.</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>If we don’t…</td>
+          <td>specify a cell width, they will be assigned one that depends on their contents. Notice how the cell with
+            the more content here is much wider.</td>
+        </tr>
+        <tr>
+          <td>All rows take part in calculating the widths, not just the first one.</td>
+          <td>Notice how the dimensions here are different than the previous example.</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td style="width: 1000px">If we specify a width, it will not always be followed. I have a width of <code>1000px</code>…</td>
+          <td style="width: 2000px">…and I have a width of <code>2000px</code>. Because there’s not enough space for
+            <code>3000px</code>, they are reduced proportionally, to 33.3% and 66.6% of the total width.</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>If we prevent word wrapping, the table can become so wide it grows beyond its container.</td>
+          <td class="preformatted">…and <code>text-overflow: ellipsis</code> doesn’t help either.</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>Large images and blocks of code can also cause the same issue.</td>
+          <td><img src="http://lea.verou.me/book/panoramic.jpg" /></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h1>With table-layout: fixed</h1>
+    <div></div>
+  </section>
+
+  <script type='text/javascript'>
+    var doc = document;
+    doc.querySelector('section + section div').innerHTML = doc.querySelector('section:first-of-type div').innerHTML;
+  </script>
+</body>
+</html>
