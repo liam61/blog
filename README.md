@@ -4,6 +4,10 @@
 
 ![logo](./logo.jpg)
 
+## 个人站点
+
+- [www.freeze61.me](https://www.freeze61.me/)
+
 ## 前言
 
 - [前言](./pages/index.html)
