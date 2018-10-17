@@ -6,7 +6,7 @@
 
 ## 前言
 
-- [前言](./pages/index.html)
+- [前言](./pages/index.html" target="_blank)
 
 ## 第一章 引言
 
