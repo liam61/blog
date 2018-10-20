@@ -6,11 +6,11 @@
 
 ## 一、个人站点
 
-- [www.freeze61.me](https://www.freeze61.me/)
+[www.freeze61.me](https://www.freeze61.me/)
 
 ## 二、使用
 
-可将项目克隆下来，直接在浏览器中运行 pages 中的 html 文件
+将项目克隆下来，可直接在浏览器中运行 pages 中的 html 文件
 
 ## 三、目录结构
 
