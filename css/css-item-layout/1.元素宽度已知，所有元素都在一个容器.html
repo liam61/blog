@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>item 宽度一定，所有元素都在一个容器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    .container {
+      width: 430px;
+      padding: 10px;
+      border: 2px solid rgb(240, 103, 103);
+    }
+
+    .item {
+      display: inline-block;
+      width: 100px; /* 宽度一定 */
+      margin-right: 30px;
+      margin-bottom: 20px;
+      padding: 0 10px;
+      font-size: 20px;
+      border-radius: 5px / 5px;
+      background: rgb(103, 164, 243);
+    }
+
+    .item:nth-child(3n) { margin-right: 0; }
+    .item:nth-last-child(-n+3) { margin-bottom: 0; }
+  </style>
+
+</head>
+<body>
+  <div class='container'>
+    <div class='item'>最多放三个</div>
+    <div class='item'>最多放三个</div>
+    <div class='item'>最多放三个</div>
+    <div class='item'>最多放三个</div>
+    <div class='item'>最多放三个</div>
+    <div class='item'>最多放三个</div>
+    <div class='item'>最多放三个</div>
+  </div>
+</body>
+</html>
