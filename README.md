@@ -8,7 +8,7 @@
 
 ## JS 部分
 
-待更新
+- [1. 手撸 forEach、map、reduce 等函数（创新版）](./js/js-array-api/index.md)
 
 ## CSS 部分
 
