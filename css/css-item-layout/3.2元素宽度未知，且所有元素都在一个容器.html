@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>元素宽度未知，且所有元素都在一个容器</title>
+  <title>法2：元素宽度未知，且所有元素都在一个容器</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     .wrapper {
-      width: 371px;
+      width: 391px;
       padding: 10px;
+      margin: 150px auto;
       border: 2px solid rgb(240, 103, 103);
     }
 
     .container {
       display: flex;
       flex-wrap: wrap;
-      /* justify-content: space-around; */
       margin-bottom: -20px;
       margin-right: -30px;
     }
@@ -25,7 +25,7 @@
       display: -webkit-box;
       margin-right: 30px;
       margin-bottom: 20px;
-      padding: 0 5px;
+      padding: 5px 10px;
       font-size: 20px;
       border-radius: 5px / 5px;
       background: rgb(103, 164, 243);
@@ -39,6 +39,7 @@
       <div class='item'>两个才能成一行呀</div>
       <div class='item'>两个才能成一行呀</div>
       <div class='item'>这三个字</div>
+      <div class='item'>四个</div>
       <div class='item'>独成一行呀独成一行呀独成一行呀独成</div>
       <div class='item'>两个才能成一行呀</div>
       <div class='item'>四个</div>
