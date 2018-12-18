@@ -62,7 +62,7 @@
 
 ### 元素宽度已知 或 未知，且元素按照行数在相应容器中
 
-1. 思路：最后一个 container 去掉 margin-bottom，最后一个 item 去掉 magin-right
+1. 思路：最后一个 container 去掉 margin-bottom，最后一个 item 去掉 margin-right
 
 2. 关键代码
 
@@ -169,9 +169,6 @@
 <style>
 /* scss code */
 .wrapper {
-  padding: 10px;
-  border: 2px solid rgb(240, 103, 103);
-
   .container {
     display: flex;
     flex-wrap: wrap;
