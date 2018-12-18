@@ -201,6 +201,48 @@ console.log('结果：', res);
 // 结果： 260
 ```
 
+### filter
+
+项目中经常会遇到对 对象属性 筛选的情况，常用对象解构，然后再 return {...} 来实现
+
+**创新**
+
+- 对象也可 filter
+
+```js
+function filter(obj, callback/*, thisArg */) {
+  // 容错...
+  const O = Object(obj);
+  const T = arguments.length > 2 ? arguments[2] : null;
+
+  if (Array.isArray(O)) {
+    const finalArr = [];
+    forEach(O, (val, index) => {
+      const res = callback.call(T, val, index, O);
+      if (res === true) finalArr.push(val);
+    });
+    return finalArr;
+  }
+  if (Object.prototype.toString.call(O) === '[object Object]') {
+    const finalObj = {};
+    for (let key in O) {
+      const res = callback.call(T, O[key], key, O);
+      if (res == true) finalObj[key] = O[key];
+    }
+    return finalObj;
+  }
+}
+```
+
+测试
+
+```js
+let personObj = { name: 'lawler', password: '123321', sex: 'male', age: 22 };
+let res = filter(personObj, (val, key) => key !== 'password');
+console.log('结果：', res);
+// 结果： {name: "lawler", sex: "male", age: 22}
+```
+
 ## 四、拓展
 
 ### findIdxByProp
@@ -287,6 +329,27 @@ function filterByProp(...props) {
     return res;
   };
 }
+```
+
+测试
+
+```js
+let objArr = [
+  { id: 11, value: 'a' },
+  { id: 31, value: 'b' },
+  { id: 52, value: 'c' },
+  { id: 11, value: 'b' }
+];
+let res = filterByProp('id', 'value')(objArr, (id, value, index) => {
+  console.log(id, value, index);
+  return value === 'b';
+});
+console.log('结果：', res);
+// 11 "a" 0
+// 31 "b" 1
+// 52 "c" 2
+// 11 "b" 3
+// 结果： [{id: 31, value: "b"}, {id: 11, value: "b"}]
 ```
 
 ## 五、简单实战
