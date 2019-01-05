@@ -1,12 +1,10 @@
 # JS 手撸 forEach、map、reduce 等函数（创新版）
 
-## 一、引入
+关于 forEach 等函数的实现不算稀奇，而且也是前端开发人员的基本功，网上一搜也一大堆
 
-1. 关于 forEach 等函数的实现不算稀奇，而且也是前端开发人员的基本功，网上一搜也一大堆
+写这篇的目的是为了分享自己的一些创新见解。**但是否可在正式开发中使用请酌情考虑**
 
-2. 写这篇的目的是为了分享自己的一些创新见解。**但是否可在正式开发中使用请酌情考虑**
-
-## 二、作用（礼貌性废话）
+## 一、作用（礼貌性废话）
 
 1. 了解常用 api 的原理，帮助我们更好的选用 api 以获得更高的执行效率
 
@@ -14,7 +12,7 @@
 
 3. 兼容 IE 浏览器：早些版本的 IE 并没有部署 map, reduce 等函数
 
-## 三、开始
+## 二、开撸
 
 参考资料：
 
@@ -218,16 +216,14 @@ function filter(obj, callback/*, thisArg */) {
   if (Array.isArray(O)) {
     const finalArr = [];
     forEach(O, (val, index) => {
-      const res = callback.call(T, val, index, O);
-      if (res === true) finalArr.push(val);
+      if (callback.call(T, val, index, O) === true) finalArr.push(val);
     });
     return finalArr;
   }
   if (Object.prototype.toString.call(O) === '[object Object]') {
     const finalObj = {};
     for (let key in O) {
-      const res = callback.call(T, O[key], key, O);
-      if (res == true) finalObj[key] = O[key];
+      if (callback.call(T, O[key], key, O) === true) finalObj[key] = O[key];
     }
     return finalObj;
   }
@@ -243,7 +239,7 @@ console.log('结果：', res);
 // 结果： {name: "lawler", sex: "male", age: 22}
 ```
 
-## 四、拓展
+## 三、拓展
 
 ### findIdxByProp
 
@@ -352,11 +348,11 @@ console.log('结果：', res);
 // 结果： [{id: 31, value: "b"}, {id: 11, value: "b"}]
 ```
 
-## 五、简单实战
+## 四、简单实战
 
 ### 题目：有个份调查问卷全是填空题，有些题是必填的，有属性 required 为 true，有些则选填。现进行验证，如果有必填题没写则报错；如果必填题选全写了，则返回所有已写题的结果（数组对象）
 
-1. 数据约定（假设数据是双向绑定的）
+1. 数据约定
 
 ```js
 const questionArr = [
@@ -378,10 +374,10 @@ function verifyQuestions(questionArr) {
 }
 ```
 
-## 六、总结
+## 五、总结
 
 1. 对于原生 api 的实现其实就通过遍历来调用回调函数，加上 call, apply 等方法来改变 this，再根据不同情况操作回调函数的结果，按需返回数据
 
-2. 对于拓展方面其实还有很多可写的，比如 `findAllIndex()` 可返回所有符合的下标、`findAllIdxByProp` 通过传入的 prop 来操作对象数组来返回所有符合的下标，等等，仅作为发散训练，是否在实际项目中使用请酌情考虑
+2. 对于拓展方面其实还有很多可写的，比如 `findAllIndex()` 可返回所有符合的下标、`findAllIdxByProp` 通过传入的 prop 来操作对象数组来返回所有符合的下标，等等。仅作为发散训练，是否在实际项目中使用请酌情考虑
 
 3. 最后感谢能认真看到这里的小伙伴~ 给你们笔芯 ❤

@@ -1,0 +1,23 @@
+# Mac OS
+.DS_Store
+
+# IDE
+.idea
+.project
+
+# npm
+node_modules
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
+.yo-rc.json
+
+# folder
+build
+dist
+
+# cache
+.cache
+
+js/js-react-communication

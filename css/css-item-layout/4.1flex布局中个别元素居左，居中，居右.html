@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>4.1flex布局中元素整体居左，最后几个居右</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    .container {
+      display: flex;
+      width: 600px;
+      padding: 10px;
+      margin: 50px auto;
+      border: 2px solid rgb(240, 103, 103);
+      background: rgba(103, 164, 243, .6);
+    }
+
+    .item {
+      margin-right: 30px;
+      font-size: 20px;
+    }
+
+    .item:last-child {
+      margin-right: 0;
+    }
+
+    h3 {
+      text-align: center;
+    }
+
+    /* 整体居左，最后几个居右 */
+    .i1:nth-last-child(1) {
+      flex: 1;
+      text-align: right;
+    }
+
+    /* 整体居右，前几个居左 */
+    .c2 {
+      justify-content: flex-end;
+    }
+
+    .i2:nth-child(2) {
+      flex: 1;
+      text-align: left;
+    }
+
+    /* 某几个居中 */
+    .i3:nth-child(2) {
+      flex: 1;
+      text-align: right;
+    }
+
+    .i3:nth-child(4) {
+      flex: 1;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>整体居左，最后几个居右</h3>
+  <div class='container'>
+    <div class='item i1'>第一项</div>
+    <div class='item i1'>第二项</div>
+    <div class='item i1'>第三项</div>
+    <div class='item i1'>第四项</div>
+    <div class='item i1'>最后一项</div>
+  </div>
+  <h3>整体居右，前几个居左</h3>
+  <div class='container c2'>
+    <div class='item i2'>第一项</div>
+    <div class='item i2'>第二项</div>
+    <div class='item i2'>第三项</div>
+    <div class='item i2'>第四项</div>
+    <div class='item i2'>最后一项</div>
+  </div>
+  <h3>某几个居中</h3>
+  <div class='container'>
+    <div class='item i3'>第一项</div>
+    <div class='item i3'>第二项</div>
+    <div class='item i3'>第三项</div>
+    <div class='item i3'>第四项</div>
+    <div class='item i3'>最后一项</div>
+  </div>
+</body>
+</html>

@@ -39,16 +39,16 @@
 </div>
 
 <style>
-/* scss code */
-.container {
-  .item {
-    margin-right: 30px;
-    margin-bottom: 20px;
+  /* scss code */
+  .container {
+    .item {
+      margin-right: 30px;
+      margin-bottom: 20px;
 
-    &:nth-child(3n) { margin-right: 0; }
-    &:nth-last-child(-n+3) { margin-bottom: 0; }
+      &:nth-child(3n) { margin-right: 0; } /* 一行最多几个就填 几n */
+      &:nth-last-child(-n+3) { margin-bottom: 0; }
+    }
   }
-}
 </style>
 ```
 
@@ -81,16 +81,16 @@
 </div>
 
 <style>
-/* scss code */
-.container {
-  margin-bottom: 20px;
-  &:last-child { margin-bottom: 0; }
+  /* scss code */
+  .container {
+    margin-bottom: 20px;
+    &:last-child { margin-bottom: 0; }
 
-  .item {
-    margin-right: 30px;
-    &:last-child { margin-right: 0; }
+    .item {
+      margin-right: 30px;
+      &:last-child { margin-right: 0; }
+    }
   }
-}
 </style>
 ```
 
@@ -104,7 +104,7 @@
 
 ### 元素宽度未知，即不知道一行最多多少个，且所有元素都在一个容器中，常见于 flex 布局
 
-#### 法1：Flex 布局
+**法1：Flex 布局**
 
 1. 思路：利用 flex 布局的 justify-content 主轴属性来控制元素的间距
 
@@ -123,17 +123,18 @@
 </div>
 
 <style>
-/* scss code */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* 可以尝试其他值，但效果仍不好 */
+  /* scss code */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 可以尝试其他值，但效果仍不好 */
 
-  .item {
-    /* margin-right: 30px; 可以不用 m-r，由 flex 来控制左右间距 */
-    margin-bottom: 20px;
+    .item {
+      /* margin-right: 30px; 可以不用 m-r，由 flex 来控制左右间距 */
+      margin-bottom: 20px;
+    }
   }
-}
+</style>
 ```
 
 4. 运行截图
@@ -144,7 +145,7 @@
 
 - [元素宽度已知或未知，且按照行数在相应容器](./3.1元素宽度未知，且所有元素都在一个容器.html)
 
-### 法2：负margin
+**法2：负margin**
 
 1. 接下来介绍 负margin 方法，可以很好的解决 长度不定的列表项布局 问题
 
@@ -161,26 +162,25 @@
     <div class='item'>两个才能成一行呀</div>
     <div class='item'>这三个字</div>
     <div class='item'>独成一行呀独成一行呀独成一行呀独</div>
-    <div class='item'>两个才能成一行呀</div>
     <div class='item'>四个</div>
   </div>
 </div>
 
 <style>
-/* scss code */
-.wrapper {
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -30px;
-    margin-bottom: -20px;
+  /* scss code */
+  .wrapper {
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -30px;
+      margin-bottom: -20px;
 
-    .item {
-      margin-right: 30px;
-      margin-bottom: 20px;
+      .item {
+        margin-right: 30px;
+        margin-bottom: 20px;
+      }
     }
   }
-}
 </style>
 ```
 
@@ -191,6 +191,153 @@
 5. 完整代码
 
 - [法2：元素宽度未知，且所有元素都在一个容器](./3.2元素宽度未知，且所有元素都在一个容器.html)
+
+#### flex 布局中元素整体居左，最后几个居右；整体居右，前几个居左；某几个居中
+
+有多少人有过被 `justify-self: flex-end;` 支配的恐惧，其实没有这个属性啦！
+
+![MDN上flex的属性](./images/8.MDN上flex的属性.png)
+
+- 参考链接：[https://www.zhubenjie.com/article/5ac48df686a651221c217dec](https://www.zhubenjie.com/article/5ac48df686a651221c217dec)
+
+**法1：flex: 1 + text-align**
+
+1. 思路：给 flex 布局中的元素设置了 flex: 1，可以类似看成 display: block 元素，所以设置 text-align 就搞定
+
+2. 关键代码
+
+```html
+<div class='container'>
+  <div class='item'>第一项</div>
+  <div class='item'>第二项</div>
+  <div class='item'>第三项</div>
+  <div class='item'>最后一项</div>
+</div>
+
+<style>
+  /* scss code 整体居左，某几个元素居右 */
+  .container {
+    display: flex;
+    justify-content: flex-start; /* 默认为 flex-start */
+
+    .item {
+      &:nth-last-child(2) { /* 想让最后几个元素居右就填几 */
+        flex: 1;
+        text-align: right;
+      }
+    }
+  }
+</style>
+
+<style>
+  /* scss code 整体居右，某几个元素居左 */
+  .container {
+    display: flex;
+    justify-content: flex-end;
+
+    .item {
+      &:nth-child(2) { /* 想让前几个元素居左就填几 */
+        flex: 1;
+        text-align: left;
+      }
+    }
+  }
+</style>
+
+<style>
+  /* scss code 整体居左，某几个居中 */
+  .container {
+    display: flex;
+
+    .item {
+      &:nth-child(2) { /* 想从第前几个元素开始居中 */
+        flex: 1;
+        text-align: right;
+      }
+
+      &:nth-child(4) { /* 想从第前几个元素结束居中 */
+        flex: 1;
+        text-align: left;
+      }
+    }
+  }
+</style>
+```
+
+3. 运行截图
+
+![9.个别元素居左，居中，居右](./images/9.个别元素居左，居中，居右text-align.png)
+
+4. 完整代码
+
+- [4.1flex布局中个别元素居左，居中，居右](./4.1flex布局中个别元素居左，居中，居右.html)
+
+**法2：margin-* auto**
+
+1. 思路：对于 flex 布局的元素也可以通过 margin 来调整位置
+
+2. 关键代码（代码基本与 法1 类似，可在完整代码具体查看）
+
+```html
+<div class='container'>
+  <div class='item'>第一项</div>
+  <div class='item'>第二项</div>
+  <div class='item'>第三项</div>
+  <div class='item'>最后一项</div>
+</div>
+
+<style>
+  /* scss code 整体居左，某几个元素居右 */
+  .container {
+    display: flex;
+
+    .item {
+      &:nth-last-child(2) { /* 想让最后几个元素居右就填几 */
+        margin-left: auto;
+      }
+    }
+  }
+</style>
+
+<style>
+  /* scss code 整体居右，某几个元素居左 */
+  .container {
+    display: flex;
+    justify-content: flex-end;
+
+    .item {
+      &:nth-child(2) { /* 想让前几个元素居左就填几 */
+        margin-right: auto;
+      }
+    }
+  }
+</style>
+
+<style>
+  /* scss code 整体居左，某几个居中 */
+  .container {
+    display: flex;
+
+    .item {
+      &:nth-child(2) { /* 想从第前几个元素开始居中 */
+        margin-left: auto;
+      }
+
+      &:nth-child(4) { /* 想从第前几个元素结束居中 */
+        margin-right: auto;
+      }
+    }
+  }
+</style>
+```
+
+3. 运行截图
+
+![10.个别元素居左，居中，居右margin](./images/10.个别元素居左，居中，居右margin.png)
+
+4. 完整代码
+
+- [4.2flex布局中个别元素居左，居中，居右](./4.2flex布局中个别元素居左，居中，居右.html)
 
 ## 四、总结
 
