@@ -192,9 +192,9 @@
 
 - [法2：元素宽度未知，且所有元素都在一个容器](./3.2元素宽度未知，且所有元素都在一个容器.html)
 
-#### flex 布局中元素整体居左，最后几个居右；整体居右，前几个居左；某几个居中
+### flex 布局中元素整体居左，最后几个居右；整体居右，前几个居左；某几个居中
 
-有多少人有过被 `justify-self: flex-end;` 支配的恐惧，其实没有这个属性啦！
+有多少人有过被 `justify-self: flex-end;` 支配的恐惧，其实没有 justify-self 这个属性啦！
 
 ![MDN上flex的属性](./images/8.MDN上flex的属性.png)
 
@@ -299,36 +299,8 @@
   }
 </style>
 
-<style>
-  /* scss code 整体居右，某几个元素居左 */
-  .container {
-    display: flex;
-    justify-content: flex-end;
-
-    .item {
-      &:nth-child(2) { /* 想让前几个元素居左就填几 */
-        margin-right: auto;
-      }
-    }
-  }
-</style>
-
-<style>
-  /* scss code 整体居左，某几个居中 */
-  .container {
-    display: flex;
-
-    .item {
-      &:nth-child(2) { /* 想从第前几个元素开始居中 */
-        margin-left: auto;
-      }
-
-      &:nth-child(4) { /* 想从第前几个元素结束居中 */
-        margin-right: auto;
-      }
-    }
-  }
-</style>
+scss code 整体居右，某几个元素居左
+...
 ```
 
 3. 运行截图

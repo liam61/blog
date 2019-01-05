@@ -4,7 +4,7 @@
 
 ## 个人站点
 
-[www.freeze61.me](http://www.freeze61.me/)
+[www.omyleon.com](http://www.omyleon.com/)
 
 ## JS 部分
 
