@@ -97,7 +97,7 @@
       border-radius: 50%;
       background: yellowgreen;
       background-image: linear-gradient(to right, transparent 50%, currentColor 0);
-      color: #655;
+      color: #655; /* currentColor 指的是当前 color 的初值 */
     }
 
     .div1:before {
@@ -108,7 +108,7 @@
       border-radius: 0 100% 100% 0 / 50%;
       background-color: inherit;
       transform-origin: left;
-      animation: spin 3s linear infinite, bg 6s step-end infinite; /* 没转半圈右边部分要换背景颜色 */
+      animation: spin 3s linear infinite, bg 6s step-end infinite; /* 每转半圈右边部分要换背景颜色 */
     }
 
     .pie {
@@ -124,8 +124,8 @@
     .pie:before {
       content: '';
       position: absolute;
-      top: 0; left: 50%;
       width: 50%; height: 100%;
+      top: 0; left: 50%;
       border-radius: 0 100% 100% 0 / 50%;
       background-color: inherit;
       transform-origin: left;
@@ -168,16 +168,20 @@
     .conic2 {
       width: 150px;
       height: 150px;
+      /* 垂直向上开始，走 1/8圆 */
       background: conic-gradient(#000 12.5%, #fff 0, #fff 37.5%,
         #000 0, #000 62.5%, #fff 0, #fff 87.5%, #000 0);
       background-size: 50px 50px;
+      color: red;
     }
 
     .conic3 {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      background: repeating-conic-gradient(deeppink 0, deeppink 15deg, yellowgreen 0, yellowgreen 30deg);
+      background: repeating-conic-gradient(
+        deeppink 0, deeppink 15deg, yellowgreen 0, yellowgreen 40deg
+      );
     }
 
     @keyframes spin {
@@ -222,12 +226,12 @@
   <br /><br />
   <div class="conic">多色</div>
   <br />
-  <div class="conic2">background-size</div>
+  <div class="conic2">conic-gradient</div>
   <br />
   <div class="conic3">repaeting-conic-gradient</div>
   <br />
 
-  <script src="./js/util.js"></script>
+  <script src="../js/util.js"></script>
   <script>
     $$('.js').forEach(function(pie) {
       var percentage = parseFloat(pie.textContent);

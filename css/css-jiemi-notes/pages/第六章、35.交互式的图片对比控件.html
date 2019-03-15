@@ -57,9 +57,9 @@
 
     .image-slider > div {
       position: absolute;
-      top: 0; bottom: 0; left: 0;
       width: 50%;
       max-width: 100%;
+      top: 0; left: 0;
       overflow: hidden;
       resize: horizontal;
     }
@@ -67,11 +67,12 @@
     .image-slider > div:before {
       content: '';
       position: absolute;
-      right: 0; bottom: 0;
       width: 12px; height: 12px;
+      right: 0; bottom: 0;
       padding: 5px;
       background: linear-gradient(-45deg, white 50%, transparent 0);
       background-clip: content-box;
+      transform: rotate(-45deg);
       cursor: ew-resize;
       -webkit-filter: drop-shadow(0 0 2px black);
       filter: drop-shadow(0 0 2px black);
@@ -109,7 +110,7 @@
     <img src="http://csssecrets.io/images/adamcatlace.jpg" alt="After" />
   </div>
 
-  <script src="./js/util.js"></script>
+  <script src="../js/util.js"></script>
 
   <script>
     $$('.image-slider2').forEach(function(slider) { 

@@ -29,7 +29,7 @@
         因此，top  left 默认指的是 padding box 的左上角
 
       3. background-origin 属性可以用它来改变这种行为
-        如果把它的值改成 content-box，那么background-position 属性中使用的边角关键字将会以内容区的边缘作为基准
+        如果把它的值改成 content-box，那么 background-position 属性中使用的边角关键字将会以内容区的边缘作为基准
         也就是说，此时背景图片距离边角的偏移量就跟内边距保持一致了
   
     三、calc() 方案
@@ -46,7 +46,7 @@
       padding: 10px;
       color: white;
       background: url(http://csssecrets.io/images/code-pirate.svg)
-                  no-repeat bottom right #58a;
+                  no-repeat bottom right #58a; /* 回退 */
       background-position: right 20px bottom 10px;
     }
 

@@ -40,13 +40,13 @@
 
   <style>
     h1 {
-      font: bold 200% Consolas, Monaco, monospace;
       width: 15ch;
       white-space: nowrap;
       overflow: hidden;
       border-right: .05em solid;
       animation: typing 6s steps(15),
         caret 1s steps(1) infinite;
+      font: bold 200% Consolas, Monaco, monospace;
     }
 
     @keyframes typing {
@@ -65,7 +65,7 @@
 <body>
   <h1>CSS is awesome!</h1>
 
-  <script src="./js/util.js"></script>
+  <script src="../js/util.js"></script>
   <script>
     $$('h1').forEach(function (h1) {
       var len = h1.textContent.length,

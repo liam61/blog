@@ -35,7 +35,7 @@
 
   <style>
     main {
-      transition: .6s;
+      transition: .5s;
       background: white;
     }
 
@@ -46,11 +46,11 @@
 
     dialog {
       position: fixed;
-      top: 50%; left: 50%;
-      z-index: 1;
       width: 10em;
+      top: 50%; left: 50%;
       padding: 2em;
       margin: -5em;
+      z-index: 1;
       border: 1px solid silver;
       border-radius: .5em;
       box-shadow: 0 .2em .5em rgba(0, 0, 0, .5),
@@ -67,7 +67,6 @@
   </style>
 </head>
 <body>
-  <dialog>O HAI, I’m a dialog. Click on me to dismiss.</dialog>
   <main>
     <button>Show dialog</button>
     <p>Bacon ipsum dolor sit amet consectetur
@@ -186,8 +185,9 @@
       short loin
       aliqua.</p>
   </main>
+  <dialog>O HAI, I’m a dialog. Click on me to dismiss.</dialog>
   
-  <script src="./js/util.js"></script>
+  <script src="../js/util.js"></script>
   <script>
     function $(sel) {
       return document.querySelector(sel);
@@ -197,7 +197,6 @@
     var main = $('main');
 
     $('button').onclick = function () {
-
       dialog.setAttribute('open', '');
       main.classList.add('de-emphasized');
     }
