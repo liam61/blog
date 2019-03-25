@@ -10,7 +10,7 @@
 
 - [1. 手撸 forEach、map、reduce 等函数（创新版）](./js/js-array-api/index.md)
 
-- [2. V8引擎的垃圾回收，讲得很好的一篇](https://blog.liuxuan.site/2018/04/14/v8_garbage_collection/)
+- [2. V8 的垃圾回收机制，讲得很好的一篇](https://blog.liuxuan.site/2018/04/14/v8_garbage_collection/)
 
 ## CSS 相关
 
@@ -24,6 +24,6 @@
 
 ## 面试相关
 
-- [1. 你需要的面经。字节跳动、网易、美团](./interview/experience/index.md)
+- [1. 你需要的前端面经，字节跳动、网易、美团](./interview/experience/index.md)
 
 面经更新了，欢迎在 [Issues](https://github.com/lawler61/blog/issues) 里寻找答案，听说评论区里全是大神哦
