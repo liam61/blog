@@ -33,9 +33,8 @@
 ```js
 function forEach(obj, callback/*, thisArg */) {
   if (obj == null) throw new TypeError('obj is null or not defined'); // 含 null 和 undefined
-  if (Object.prototype.toString.call(callback) !== '[object Function]') {
+  if (Object.prototype.toString.call(callback) !== '[object Function]')
     throw new TypeError(`${callback} is not a function`);
-  }
 
   const O = Object(obj);
   const T = arguments.length > 2 ? arguments[2] : null;
@@ -120,7 +119,7 @@ console.log('结果：', res); // 返回对象
 
 ### reduce
 
-reduce 与 map 也大同小异，reduce 每次把得到的值传回 回调函数中
+reduce 与 map 也大同小异，reduce 每次把得到的值传入 回调函数中
 
 **创新**
 
@@ -138,11 +137,9 @@ function reduce(obj, callback /*, initValue */) {
 
   if (Array.isArray(O)) {
     const len = O.length >>> 0;
-    if (arguments.length > 2) {
-      value = arguments[2]; // 传了 initValue
-    } else if (len > 0) {
-      value = O[k++]; // 没传 initValue，取第一项的值
-    } else { throw new TypeError('Reduce of empty array with no initial value'); }
+    if (arguments.length > 2) value = arguments[2]; // 传了 initValue
+    else if (len > 0) value = O[k++]; // 没传 initValue，取第一项的值
+    else throw new TypeError('Reduce of empty array with no initial value');
 
     while (k < len) {
       if (k in O) {
@@ -154,11 +151,9 @@ function reduce(obj, callback /*, initValue */) {
     }
   }
   if (Object.prototype.toString.call(O) === '[object Object]') {
-    if (arguments.length > 2) {
-      value = arguments[2]; // 传了 initValue
-    } else if (Object.values(O)[0]) {
-      value = Object.values(O)[k++]; // 没传 initValue，取第一项的值
-    } else { throw new TypeError('Reduce of empty object with no initial value'); }
+    if (arguments.length > 2) value = arguments[2]; // 传了 initValue
+    else if (Object.values(O)[0]) value = Object.values(O)[k++]; // 没传 initValue，取第一项的值
+    else throw new TypeError('Reduce of empty object with no initial value');
 
     forEach(Object.keys(O), (key, index) => { // 之前部署的带跳出的 forEach
       if (index >= k) {
@@ -180,7 +175,7 @@ let res = reduce(arr, (sum, num, i) => {
   if (i === 3) return false;
   console.log('arr已遍历：', num, i);
   return sum + num;
-}, 0);
+}, 0); // 初值为 0
 console.log('结果：', res);
 // arr已遍历： 1 0
 // arr已遍历： 3 1
@@ -188,7 +183,7 @@ console.log('结果：', res);
 // 结果： 9
 
 let scores = { Math: 95, Chinese: 80, English: 85, Physics: 59 };
-res = E.reduce(scores, (sum, score, key) => {
+res = reduce(scores, (sum, score, key) => {
   if (key === 'Physics') { return false; }
   console.log('obj已遍历：', score, key);
   return sum + score;
@@ -201,7 +196,14 @@ console.log('结果：', res);
 
 ### filter
 
-项目中经常会遇到对 对象属性 筛选的情况，常用对象解构，然后再 return {...} 来实现
+项目中经常会遇到对 对象属性 筛选的情况，如下
+
+```js
+const obj = { a: 1, b: 2, c: 3 };
+const { a, c } = obj;
+// 操作 a = ...; c = ...;
+return { aChanged, cChanged };
+```
 
 **创新**
 
@@ -259,9 +261,8 @@ function findIdxByProp(...props) {
     const T = arguments.length > 2 ? arguments[2] : null;
 
     if (!Array.isArray(O)) throw new TypeError(`${O} is not an array`);
-    if (!O.every((item) => Object.prototype.toString.call(item) === '[object Object]')) {
+    if (!O.every((item) => Object.prototype.toString.call(item) === '[object Object]'))
       throw new TypeError(`items in ${O} are not all Object`);
-    }
 
     let res = -1;
     O.every((innerObj, index) => {
@@ -313,9 +314,8 @@ function filterByProp(...props) {
     const T = arguments.length > 2 ? arguments[2] : null;
 
     if (!Array.isArray(O)) throw new TypeError(`${O} is not an array`);
-    if (!O.every((item) => Object.prototype.toString.call(item) === '[object Object]')) {
+    if (!O.every((item) => Object.prototype.toString.call(item) === '[object Object]'))
       throw new TypeError(`items in ${O} are not all Object`);
-    }
 
     const res = [];
     O.forEach((innerObj, index) => {
@@ -358,7 +358,7 @@ console.log('结果：', res);
 const questionArr = [
   { id: 1, value: '', required: true},
   { id: 2, value: 'a', required: false },
-  { id: 3, value: 'bc', required: true},
+  { id: 3, value: 'bc', required: true },
   ...
 ];
 ```

@@ -13,14 +13,20 @@
 1. 实现一个类可以完成事件 on, once, trigger, off
 
 > 关键词：订阅-发布模式
+>
+> 详见：[https://github.com/lawler61/blog/issues/1](https://github.com/lawler61/blog/issues/1)
 
 2. 发布新闻时需要提醒发布的时间。写一个函数，传递一个参数为时间戳，完成时间的格式化。如果发布一分钟内，输出：刚刚；n 分钟前发布，输出：n分钟前；超过一个小时，输出：n小时前；超过一天，输出：n天前；但超过一个星期，输出发布的准确时间
+
+> 详见：[https://github.com/lawler61/blog/issues/2](https://github.com/lawler61/blog/issues/2)
 
 3. 谈谈计算机中原码，反码，补码以及它们之间的转换
 
 > 关键词：正数、负数、0
 
 4. 格式化数字。输入：12345，输出：12,234；输入：2345.6789，输出：2,345.6789。要求：使用正则和非正则两种方式实现
+
+> 详见：[https://github.com/lawler61/blog/issues/3](https://github.com/lawler61/blog/issues/3)
 
 5. 给一段文本，将文本数组化，示例如下：
 
@@ -96,6 +102,8 @@ rth sthst ar   gae
 
 - 实现函数能够深度克隆 js 各种数据类型。附加题：实现对象中嵌套数组，数组中嵌套对象
 
+> 详见：[https://github.com/lawler61/blog/issues/4](https://github.com/lawler61/blog/issues/4)
+
 8. 前端性能优化
 
 > 关键词：html，js，服务器
@@ -153,6 +161,8 @@ rth sthst ar   gae
   data.a = 2; // 输入: 2 1
 ```
 
+> 详见：[https://github.com/lawler61/blog/issues/5](https://github.com/lawler61/blog/issues/5)
+
 10. new 一个构造函数发生了什么
 
 > 关键词：除了那 4 步，还可以从 EC，AO，VO 对象上说
@@ -184,6 +194,8 @@ rth sthst ar   gae
 8. 来写写代码
 
 - 顺序发送 4 个请求 a，b，c，d，要求按照顺序输出，即如果先返回 b，则不输出，再返回 a，输出 a，b
+
+> 详见：[https://github.com/lawler61/blog/issues/6](https://github.com/lawler61/blog/issues/6)
 
 9. V8 内存回收机制
 
@@ -320,6 +332,8 @@ rth sthst ar   gae
 5. 用 promise 实现一个请求超时功能
 
 > 关键词：promise.then 与 setTimeout 并行
+>
+> 详见：[https://github.com/lawler61/blog/issues/7](https://github.com/lawler61/blog/issues/7)
 
 6. three.js 如何创建一个 mesh
 
