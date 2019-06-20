@@ -12,6 +12,10 @@
 
 - [2. V8 的垃圾回收机制，讲得很好的一篇](https://blog.liuxuan.site/2018/04/14/v8_garbage_collection/)
 
+- [3. axios restful 封装 待更新](https://github.com/lawler61/qa-app)
+
+- [4. websocket 实战——好友聊天 待更新](https://github.com/lawler61/qa-app)
+
 ## CSS 相关
 
 - [1.《CSS 揭秘》读书笔记](./css/css-jiemi-notes/index.md)
@@ -21,6 +25,14 @@
 ## HTML 相关
 
 待更新
+
+## 项目相关
+
+- [1. 手撸 react 脚手架：react-lighter](https://github.com/lawler61/react-lighter.git)
+
+- [2. 毕业设计：问答系统（通过 react-lighter 构建）](https://github.com/lawler61/qa-app)
+
+- [3. 毕业设计：问答系统服务端](https://github.com/lawler61/qa-app-server)
 
 ## 面试相关
 
