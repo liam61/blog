@@ -12,7 +12,7 @@
 
 - [2. V8 的垃圾回收机制，讲得很好的一篇](https://blog.liuxuan.site/2018/04/14/v8_garbage_collection/)
 
-- [3. axios restful 封装 待更新](https://github.com/lawler61/qa-app)
+- [3. axios: restful 风格的二次封装](./js/js-axios-restful/index.md)
 
 - [4. websocket 实战——好友聊天 待更新](https://github.com/lawler61/qa-app)
 
