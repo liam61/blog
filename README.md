@@ -14,7 +14,7 @@
 
 - [3. axios: restful 风格的二次封装](./js/js-axios-restful/index.md)
 
-- [4. websocket 实战——好友聊天 待更新](https://github.com/lawler61/qa-app)
+- [4. websocket 实战——好友聊天](./js/js-websocket/index.md)
 
 ## CSS 相关
 
