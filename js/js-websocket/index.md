@@ -12,7 +12,7 @@
 
 4. 聊天原理很简单，如下图:
 
-<img src="./images/1.websocket.jpg" width="60%" alt="websocket 原理图" />
+<img src="./images/1.websocket.jpg" width="70%" alt="websocket 聊天原理图" />
 
 ## 简单版本
 
@@ -31,17 +31,11 @@ class WsRequest {
   }
 
   initListeners() {
-    this.ws.onopen = _event => {
-      console.log('client connect')
-    }
+    this.ws.onopen = _event => console.log('client connect')
 
-    this.ws.onmessage = event => {
-      console.log(`来自服务器的信息：${event.data}`)
-    }
+    this.ws.onmessage = event => console.log(`来自服务器的信息：${event.data}`)
 
-    this.ws.onclose = _event => {
-      console.log('client disconnect')
-    }
+    this.ws.onclose = _event => console.log('client disconnect')
   }
 
   send(content: string) {
@@ -99,13 +93,9 @@ class WsRouter {
 
     this.broadcast('hello from server'); // send data to users
 
-    wServer.on('message', async (data: Data) => {
-      console.log(`来自用户的信息：${data.toString()}`);
-    });
+    wServer.on('message', async (data: Data) => console.log(`来自用户的信息：${data.toString()}`));
 
-    wServer.on('close', (closeCode: number) => {
-      console.log(`a client has disconnected: ${closeCode}`);
-    });
+    wServer.on('close', (closeCode: number) => console.log(`a client has disconnected: ${closeCode}`));
   }
 
   broadcast(data: Data) { // 全体广播
@@ -199,9 +189,7 @@ export default class WsRequest {
   }
 
   initListeners() {
-    this.ws.onopen = _event => {
-      console.log('client connect')
-    }
+    this.ws.onopen = _event => console.log('client connect')
 
     this.ws.onmessage = event => {
       const msg: IMessage = JSON.parse(event.data)
@@ -209,9 +197,7 @@ export default class WsRequest {
       console.log(msg.content)
     }
 
-    this.ws.onclose = _event => {
-      console.log('client disconnect')
-    }
+    this.ws.onclose = _event => console.log('client disconnect')
   }
 
   // friendId 指 Friend Model 的 _id
@@ -231,7 +217,7 @@ const ws = new WsRequest('your_websocket_url', 'your_user_id') // example: ws://
 await wsRequest.send('Friend_model_id', '你好啊，jeffery', 'jeffery_id')
 ```
 
-3. 服务端：WsRouter 封装类，使用单例模式
+4. 服务端：WsRouter 封装类，使用单例模式
 
 ```js
 import expressWs, { Application, Options } from 'express-ws';
@@ -283,9 +269,7 @@ class WsRouter {
       this.sendMsgToClientById(message);
     });
 
-    wServer.on('close', (closeCode: number) => {
-      console.log(`a client has disconnected, closeCode: ${closeCode}`);
-    });
+    wServer.on('close', (closeCode: number) => console.log(`a client has disconnected, closeCode: ${closeCode}`));
   };
 
   sendMsgToClientById(message: IMessage) {
@@ -315,7 +299,7 @@ server.setConfig((app: any) => WsRouter('/ws/:id', app))
 server.build().listen(4000);
 ```
 
-4. 心跳检测
+5. 心跳检测
 
 参考：
 
@@ -332,9 +316,7 @@ wsMiddleWare = (wServer: any, req: any) => {
 
   wServer.on('message', async (data: Data) => {...});
 
-  wServer.on('pong', () => {
-    wServer.isAlive = true;
-  });
+  wServer.on('pong', () => (wServer.isAlive = true));
 }
 
 initHeartbeat(during: number = 10000) {
@@ -347,7 +329,7 @@ initHeartbeat(during: number = 10000) {
       }
 
       client.isAlive = false;
-      client.ping(() => {});
+      client.ping(() => {...});
     });
   }, during);
 }
@@ -369,7 +351,7 @@ initHeartbeat(during: number = 10000) {
 
 - testuser => _id: 5d1328065793f14020a979cf
 
-### 实际演示
+### 二、实际演示
 
 1. 打开 WebSocket Client 插件，输入测试链接，如下图：
 
@@ -383,7 +365,7 @@ wss://qaapi.omyleon.com/ws/5d1327c65793f14020a979ca
 
 ![connection-opened](./images/3.connection-opened.png)
 
-3. 发送消息，请根据 [IMessage](#升级版本) 接口来发送，当然还要附上 `friendId`，否则不能对应到相应的用户上
+3. 发送消息，请根据 [IMessage](#升级版本) 接口来发送，当然还要附上 `friendId`，否则不能对应到相应的好友关系上
 
 ```js
 {
@@ -404,6 +386,8 @@ wss://qaapi.omyleon.com/ws/5d1327c65793f14020a979ca
 5. 同理，在另一个 client 中改变 from 和 to，就能回复消息给对方
 
 ```js
+wss://qaapi.omyleon.com/ws/5d1328065793f14020a979cf
+
 {
   "friend": "5d1328295793f14020a979d5",
   "from": "5d1328065793f14020a979cf",
