@@ -10,11 +10,9 @@
 
 - [1. 手撸 forEach、map、reduce 等函数（创新版）](./js/js-array-api/index.md)
 
-- [2. V8 的垃圾回收机制，讲得很好的一篇](https://blog.liuxuan.site/2018/04/14/v8_garbage_collection/)
+- [2. axios: restful 风格的二次封装](./js/js-axios-restful/index.md)
 
-- [3. axios: restful 风格的二次封装](./js/js-axios-restful/index.md)
-
-- [4. websocket 实战——好友聊天](./js/js-websocket/index.md)
+- [3. websocket 实战——好友聊天](./js/js-websocket/index.md)
 
 ## CSS 相关
 
@@ -33,6 +31,12 @@
 - [2. 毕业设计：问答系统（通过 react-lighter 构建）](https://github.com/lawler61/qa-app)
 
 - [3. 毕业设计：问答系统服务端](https://github.com/lawler61/qa-app-server)
+
+## 服务器相关
+
+- [1. 带你跳过各种坑，一次性把 Hexo 博客部署到自己的服务器](https://github.com/lawler61/hexo-to-server)
+
+- [2. 折腾服务器：Docker 项目打包发布 + 一键部署](./server/server-docker-deploy/index.md)
 
 ## 面试相关
 
