@@ -302,6 +302,7 @@ chmod + x ./scripts/*
 3. 去吧！终极一键部署
 
 ```bash
+# 如果 DockerHub 不是最新的要先 push 下：yarn docker:push
 yarn deploy
 ```
 
@@ -311,7 +312,7 @@ yarn deploy
 
 - [next-learn 本地项目配置：Dockerfile](https://github.com/lawler61/next-learn)
 
-- [服务端配置：docker-compose 和 nginx](./projects)
+- [服务端配置：docker-compose 和 nginx](https://github.com/lawler61/blog/tree/master/server/server-docker-deploy/projects)
 
 ### 六、最后
 
