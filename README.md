@@ -14,6 +14,8 @@
 
 - [3. websocket 实战——好友聊天](./js/js-websocket/index.md)
 
+- [4. mobx 源码解读（一）：从零到 observable 一个 object](./js/mobx-source/1.observable-an-object.md)
+
 ## CSS 相关
 
 - [1.《CSS 揭秘》读书笔记](./css/css-jiemi-notes/index.md)
