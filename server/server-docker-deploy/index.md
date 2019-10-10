@@ -308,12 +308,12 @@ yarn deploy
 
 ![yarn deploy](./images/4.yarn-deploy.png)
 
-### 五、源码获取
+## 源码获取
 
 - [next-learn 本地项目配置：Dockerfile](https://github.com/lawler61/next-learn)
 
 - [服务端配置：docker-compose 和 nginx](https://github.com/lawler61/blog/tree/master/server/server-docker-deploy/projects)
 
-### 六、最后
+## 最后
 
 折腾了几天，不容易，觉得有帮助的小伙伴加个💜哦~
