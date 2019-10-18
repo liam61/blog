@@ -12,6 +12,7 @@ yarn-error.log
 yarn.lock
 package-lock.json
 .yo-rc.json
+*.bak
 
 # folder
 build
@@ -19,6 +20,3 @@ dist
 
 # cache
 .cache
-
-js/js-react-communication
-js/js-react-tips
