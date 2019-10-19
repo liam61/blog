@@ -1,16 +1,18 @@
-import * as Express from 'express';
+import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import './controllers/index';
 import './controllers/users';
-import router from './register';
+import register from './register';
 
 export default function demo() {
-  // @ts-ignore
-  const app = new Express();
+  const app = express();
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-  app.use('/', router);
 
-  app.listen(8080, () => console.log('server run as http://localhost:8080'));
+  register('/', app);
+
+  app.listen(8081, () =>
+    console.log('server is running at http://localhost:8081'),
+  );
 }

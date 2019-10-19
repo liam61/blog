@@ -30,7 +30,7 @@ export default class Users {
   }
 
   @Post('/')
-  createUsers(
+  createUser(
     @Headers('authorization') auth: string,
     @Body('name') name: string,
     @Body('password') psd: string,

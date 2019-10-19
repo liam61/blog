@@ -1,8 +1,8 @@
 {
-  "name": "express-decorator",
+  "name": "ts-decorator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "start": "nodemon",
     "format": "prettier --write \"src/**/*.ts\""
@@ -10,17 +10,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "reflect-metadata": "^0.1.13"
+  },
   "devDependencies": {
     "@types/express": "^4.17.1",
     "@types/node": "^12.11.1",
-    "express": "^4.17.1",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"
-  },
-  "dependencies": {
-    "body-parser": "^1.19.0"
   }
 }

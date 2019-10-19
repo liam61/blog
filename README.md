@@ -42,6 +42,8 @@
 
 - [2. 折腾服务器：Docker 项目打包发布 + 一键部署](./server/server-docker-deploy/index.md)
 
+- [3. 有趣的装饰器：使用 Reflect Metadata 实践依赖注入](./server/ts-decorator/index.md)
+
 ## 面试相关
 
 - [1. 你需要的前端面经，字节跳动、网易、美团](./interview/experience/index.md)
