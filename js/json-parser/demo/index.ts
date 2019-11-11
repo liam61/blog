@@ -1,22 +1,16 @@
-import Lexer from './src/lexer';
-import Parser from './src/parser';
+import { Lexer, Parser } from './src';
 
 const input = `{
-  "resource": "song|arrString", // comment after|string,
+  "resource": "song|arrString|", // end of line（| 已做容错）
   "ab": true,
   // comment in line
   "cc": [1, "asr4", { "objInArr": false }],
   "obj": {
     "un": null
-  }
+  }, // , 已做容错
 }`;
 
-const input2 = `{
-  "aa": {},
-  "bb": []
-}`;
-
-const lexer = new Lexer(input2);
+const lexer = new Lexer(input);
 const parser = new Parser(lexer);
 
 // console.log(lexer.tokens);

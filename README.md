@@ -16,7 +16,10 @@
 
 - [4. mobx 源码解读（一）：从零到 observable 一个 object 如何](./js/mobx-source/1.observable-an-object.md)
 
-- [5. mobx 源码解读 issue](https://github.com/lawler61/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%22mobx+%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%22) 欢迎讨论，听说评论区里全是大神哦
+- [5. 从零开始撸一个 Json Parser](./js/json-parser/index.md)
+
+[ mobx 源码解读 issue](https://github.com/lawler61/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%22mobx+%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%22) 欢迎讨论，听说评论区里全是大神哦
+
 
 ## CSS 相关
 
@@ -50,4 +53,4 @@
 
 - [2. 想对各位说的话（含个人经历、学习路线、书籍推荐）](./interview/share/index.md)
 
-- [3. 面经 issue](https://github.com/lawler61/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%E9%9D%A2%E7%BB%8F) 欢迎讨论，听说评论区里全是大神哦
+[面经 issue](https://github.com/lawler61/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%E9%9D%A2%E7%BB%8F) 欢迎讨论，听说评论区里全是大神哦

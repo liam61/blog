@@ -1,9 +1,8 @@
-import Lexer from '../dist/lexer';
-import Parser from '../dist/parser';
+import { Lexer, Parser } from '../dist';
 
 test('parser simple', () => {
   const input = `{
-    "resource": "song|arrString", // comment after |string,
+    "resource": "song|arrString|", // end of line（最后的 | 已做容错处理）
     "ab": true,
     // comment line
     "num": 123
@@ -42,16 +41,49 @@ test('parse barer array', () => {
   expect(value).toBe('["1", "str", "true", { "a": "4",  }, ], ');
 });
 
-
 test('parse empty', () => {
   const input = `{
     "aa": {},
-    "bb": []
+    "bb": [], // 最后的 , 已做容错处理
   }`;
 
   const lexer = new Lexer(input);
   const parser = new Parser(lexer);
   const value = parser.parseJSON();
-  console.log(value);
-  expect(value).toBe('{ "aa": {  },  }, ');
+  expect(value).toBe('{ "aa": {  }, "bb": [],  }, ');
+});
+
+test('missing comma', () => {
+  expect(() => {
+    const input = `{
+      "aa": { "b": 1 }
+      "bb": []
+    }`;
+
+    const lexer = new Lexer(input);
+    new Parser(lexer);
+  }).toThrow(Error);
+});
+
+test('error array', () => {
+  expect(() => {
+    const input = `{
+      "bb": ["1", true } ]
+    }`;
+
+    const lexer = new Lexer(input);
+    new Parser(lexer);
+  }).toThrow(Error);
+});
+
+test('error property', () => {
+  expect(() => {
+    const input = `{
+      "aa"{ 123,
+      "b": true
+    }`;
+
+    const lexer = new Lexer(input);
+    new Parser(lexer);
+  }).toThrow(Error);
 });

@@ -1,4 +1,4 @@
-import Lexer from './lexer';
+import { Lexer } from './lexer';
 import { TokenType, TOKEN_TYPE } from './tokenType';
 import {
   JsonLiteral,
@@ -14,7 +14,7 @@ import { OBJECT_STATE, PROPERTY_STATE, ARRAY_STATE } from './parseType';
 import JsonVisitor from './jsonVisitor';
 import Visitor from './visitor';
 
-export default class Parser {
+export class Parser {
   curToken: TokenType;
   isValidate = true;
   value: JsonNode;
@@ -32,7 +32,7 @@ export default class Parser {
   }
 
   parseValue() {
-    let parsedValue: JsonNode;
+    let parsedValue: JsonNode = null;
 
     const { type, value } = this.curToken;
     switch (type) {
@@ -51,8 +51,7 @@ export default class Parser {
         parsedValue = this.parseObject() || this.parseArray();
     }
 
-    if (parsedValue) return parsedValue;
-    throw new Error('some error happened');
+    return parsedValue;
   }
 
   parseObject() {
@@ -77,7 +76,10 @@ export default class Parser {
             obj.children.push(this.parseProperty());
             state = OBJECT_STATE.PROPERTY;
           }
-          if (isReturn) return obj;
+          if (isReturn) {
+            this.consume();
+            return obj;
+          }
           break;
         }
         case OBJECT_STATE.PROPERTY: {
@@ -95,12 +97,11 @@ export default class Parser {
             obj.children.push(new JsonComment(value));
             this.consume();
           }
-          const property = this.parseProperty();
-          if (property) {
-            obj.children.push(property);
-            state = OBJECT_STATE.PROPERTY;
-            // this.c // ？？？？？？
-          } else throw new Error('this is no more properties');
+
+          const { nextIndex, tokens } = this.lexer;
+          if (nextIndex === tokens.length - 1) return obj; // 因为最后的 , 进入该 case 需容错
+          obj.children.push(this.parseProperty());
+          state = OBJECT_STATE.PROPERTY;
           break;
         }
       }
@@ -131,8 +132,10 @@ export default class Parser {
             arr.children.push(this.parseValue());
             state = ARRAY_STATE.VALUE;
           }
-          // this.consume();
-          if (isReturn) return arr;
+          if (isReturn) {
+            this.consume();
+            return arr;
+          }
           break;
         }
         case ARRAY_STATE.VALUE: {
@@ -140,7 +143,7 @@ export default class Parser {
           if (type === TOKEN_TYPE.CloseBracket) isReturn = true;
           else if (type === TOKEN_TYPE.Comma) {
             state = ARRAY_STATE.COMMA;
-          } else throw new Error('there is no more properties');
+          } else throw new Error('error value in array');
           this.consume();
           if (isReturn) return arr;
           break;
@@ -202,7 +205,7 @@ export default class Parser {
             str.sibling.push(new JsonString(this.curToken.value));
             this.consume();
           } else {
-            // error
+            // throw new Error('this is no more sibling string');
           }
       }
     }

@@ -1,4 +1,4 @@
-import Lexer from '../dist/lexer';
+import { Lexer } from '../dist';
 import { TOKEN_TYPE } from '../dist/tokenType';
 
 test('parse simple', () => {
@@ -173,7 +173,7 @@ test('value 为汉字', () => {
 test('invalid value', () => {
   expect(() => {
     const input = `{
-      "bb": 1a34
+      "bb": 1ab34
     }`;
 
     new Lexer(input);

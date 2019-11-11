@@ -8,11 +8,11 @@ import {
   isNewLine,
 } from './tokenType';
 
-export default class Lexer {
+export class Lexer {
   curIndex = 0;
   curChar: string;
   tokens: TokenType[] = [];
-  nextIndex = 0; // 遍历使用
+  nextIndex = -1; // 遍历使用
 
   constructor(private input: string) {
     this.curChar = this.input.charAt(this.curIndex);
@@ -136,7 +136,7 @@ export default class Lexer {
 
   next() {
     return this.nextIndex < this.tokens.length
-      ? this.tokens[this.nextIndex++]
+      ? this.tokens[++this.nextIndex]
       : null;
   }
 }
