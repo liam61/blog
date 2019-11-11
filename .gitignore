@@ -17,6 +17,7 @@ package-lock.json
 # folder
 build
 dist
+coverage
 
 # cache
 .cache
