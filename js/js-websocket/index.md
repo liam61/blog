@@ -351,6 +351,16 @@ initHeartbeat(during: number = 10000) {
 
 - testuser => _id: 5d1328065793f14020a979cf
 
+> **2019.11.15 更新**
+>
+> 线上项目数据已重置，请使用新的 id 测试
+>
+> friend: jeffery 与 testuser => _id: 5d1328295793f14020a979d5
+>
+> jeffery => _id: 5dce50cbb869af711db528f1
+>
+> testuser => _id: 5dce5119b869af711db528fc
+
 ### 二、实际演示
 
 1. 打开 WebSocket Client 插件，输入测试链接，如下图：
