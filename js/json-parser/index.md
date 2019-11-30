@@ -193,10 +193,7 @@ parseString() {
       case TOKEN_TYPE.BitOr: // |
         // 如果是 |，入栈并清空
         buffer && this.tokens.push({ type: TOKEN_TYPE.String, value: buffer });
-        this.tokens.push({
-          type: TOKEN_TYPE.BitOr,
-          value: TOKEN_TYPE.BitOr,
-        });
+        this.tokens.push({ type: TOKEN_TYPE.BitOr, value: TOKEN_TYPE.BitOr });
         buffer = '';
         break;
       case TOKEN_TYPE.Quote: // "
@@ -208,7 +205,6 @@ parseString() {
         // 默认就继续缓存
         buffer += this.curChar;
     }
-    this.consume();
   }
 }
 ```
@@ -370,7 +366,6 @@ parseString() {
       case TOKEN_TYPE.Comma: // ,
         return str;
       case TOKEN_TYPE.BitOr: // |
-        this.consume();
         // 放进 JsonString 的 sibling 中
         str.sibling.push(new JsonString(this.curToken.value));
         this.consume();
@@ -395,8 +390,6 @@ parseProperty() {
       case PROPERTY_STATE.START:
         if (type === TOKEN_TYPE.String) {
           property.key = new JsonKey(value);
-          state = PROPERTY_STATE.KEY;
-          this.consume();
           break;
         }
         return null;
@@ -416,7 +409,7 @@ parseProperty() {
 }
 ```
 
-8. parseObject，挨个处理 property 处理，遇到逗号则处理下个 property（parseArray 同理）
+8. parseObject，挨个处理 property，遇到逗号则处理下个 property（parseArray 同理）
 
 此处较复杂，具体请看源码
 
@@ -437,12 +430,7 @@ function parseObject() {
         }
         return null;
       case OBJECT_STATE.OPEN: {
-        let isReturn = false;
-        if (type === TOKEN_TYPE.CloseBrace) isReturn = true;
-        else {
-          obj.children.push(this.parseProperty());
-          state = OBJECT_STATE.PROPERTY;
-        }
+        obj.children.push(this.parseProperty());
         break;
       }
       case OBJECT_STATE.PROPERTY: {
@@ -451,6 +439,7 @@ function parseObject() {
       }
       // 继续下一个键值对
       case OBJECT_STATE.COMMA: {
+        obj.children.push(this.parseProperty());
         // ...
         break;
       }
@@ -472,7 +461,7 @@ const input = `{
 }`;
 ```
 
-- 输入
+- 输出
 
 ![parser](./images/2.parser.png)
 
@@ -511,11 +500,6 @@ export default class JsonVisitor extends Visitor {
       this.value += '], ';
     } else this.value += `"${value}", `;
   }
-
-  visitLiteral(jsonLiteral: JsonLiteral) {
-    const { value } = jsonLiteral;
-    this.value += `"${value}", `;
-  }
 }
 ```
 
@@ -524,19 +508,9 @@ export default class JsonVisitor extends Visitor {
 造轮子是痛苦的，但用起来真的爽！
 
 ```js
-const input = `{
-  "resource": "song|arrString|", // end of line（| 已做容错）
-  "ab": true,
-  // comment in line
-  "cc": [1, "asr4", { "objInArr": false }],
-  "obj": {
-    "un": null
-  }, // , 已做容错
-}`;
-
-const lexer = new Lexer(input);
+const lexer = new Lexer(`{some text}`);
 const parser = new Parser(lexer);
-console.log(parser.parseJSON());
+console.log(parser.parseJSON(/* your visitor if have */));
 ```
 
 ## 最后
