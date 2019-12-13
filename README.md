@@ -32,6 +32,8 @@
 
 - [8. mobx 源码解读（四）：讲讲 autorun 和 reaction](./js/mobx-source/4.autorun.md)
 
+- [8. mobx 源码解读（五）：如虎添翼的 mobx-react](./js/mobx-source/5.mobx-react.md)
+
 [mobx 源码解读 issue](https://github.com/lawler61/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%22mobx+%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%22) 欢迎讨论，听说评论区里全是大神哦
 
 ## HTML、CSS 相关
