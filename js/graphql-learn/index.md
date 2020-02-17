@@ -1,4 +1,4 @@
-# graphQL 入门
+# graphQL 入门（含 server 和 client）
 
 最近公司大佬在推 `GraphQL & Thrift` 的 `BFF` 层方案，自己也跟着学习，为全栈做准备
 
@@ -323,8 +323,7 @@ function TabAdd() {
       <div>
         <Input label="Name" onChange={handleChange} {...data.name} />
         <Input label="Password" onChange={handleChange} {...data.password} />
-        <Input label="Age" onChange={handleChange} {...data.age}
-        />
+        <Input label="Age" onChange={handleChange} {...data.age} />
       </div>
     )
   })
@@ -356,7 +355,7 @@ yarn start
 
 ## graphQL schema to ts
 
-觉得又定义 graphQL schema 又定 ts 类型很麻烦？没关系 [graphql-codegen](https://github.com/arjunyel/angular-spacex-graphql-codegen) 帮你搞定
+觉得定义 graphQL schema 又定 ts 类型很麻烦？没关系 [graphql-codegen](https://github.com/arjunyel/angular-spacex-graphql-codegen) 帮你搞定
 
 1. codegen-server.yml
 
