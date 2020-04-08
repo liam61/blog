@@ -1,0 +1,3 @@
+<template name="loading">
+  <canvas id="loading" class="loading" style="width:24px; height:24px;" type="2d"></canvas>
+</template>

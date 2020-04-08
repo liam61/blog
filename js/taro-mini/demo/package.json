@@ -1,0 +1,55 @@
+{
+ "name": "taro-demo",
+ "version": "1.0.0",
+ "description": "",
+ "templateInfo": {
+  "name": "mobx",
+  "typescript": true,
+  "css": "less"
+ },
+ "scripts": {
+  "build:weapp": "rm -rf dist && taro build --type weapp",
+  "dev:weapp": "npm run build:weapp -- --watch",
+  "inject": "node scripts/import-toast.js",
+  "lint:type": "tsc --noEmit --skipLibCheck"
+ },
+ "author": "",
+ "license": "MIT",
+ "dependencies": {
+  "@tarojs/components": "2.1.0",
+  "@tarojs/components-qa": "2.1.0",
+  "@tarojs/mobx": "2.1.0",
+  "@tarojs/router": "2.1.0",
+  "@tarojs/taro": "2.1.0",
+  "@tarojs/taro-weapp": "2.1.0",
+  "babel-runtime": "^6.26.0",
+  "lottie-miniprogram": "^1.0.7",
+  "mobx": "4.8.0",
+  "nerv-devtools": "^1.5.5",
+  "nervjs": "^1.5.5",
+  "regenerator-runtime": "0.11.1"
+ },
+ "devDependencies": {
+  "@tarojs/cli": "2.1.0",
+  "@tarojs/mini-runner": "2.1.0",
+  "@tarojs/webpack-runner": "2.1.0",
+  "@types/react": "^16.4.6",
+  "@types/webpack-env": "^1.13.6",
+  "@typescript-eslint/eslint-plugin": "^2.13.0",
+  "@typescript-eslint/parser": "^2.13.0",
+  "babel-eslint": "^8.2.3",
+  "babel-plugin-transform-class-properties": "^6.24.1",
+  "babel-plugin-transform-decorators-legacy": "^1.3.4",
+  "babel-plugin-transform-jsx-stylesheet": "^0.6.5",
+  "babel-plugin-transform-object-rest-spread": "^6.26.0",
+  "babel-plugin-transform-runtime": "^6.23.0",
+  "babel-preset-env": "^1.6.1",
+  "eslint": "^5.16.0",
+  "eslint-config-taro": "2.1.0",
+  "eslint-plugin-import": "^2.12.0",
+  "eslint-plugin-react": "^7.8.2",
+  "eslint-plugin-react-hooks": "^1.6.1",
+  "eslint-plugin-taro": "2.1.0",
+  "typescript": "^3.0.1"
+ }
+}
