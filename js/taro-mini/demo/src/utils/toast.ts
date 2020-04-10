@@ -1,5 +1,4 @@
 import Taro from '@tarojs/taro'
-import { isPlainObject } from 'lodash'
 import successIcon from '@/images/success.svg'
 import errorIcon from '@/images/error.svg'
 import $page from './page'
@@ -46,7 +45,7 @@ class Toast {
    * 自定义调用
    */
   static async show(config: ToastConfig) {
-    if (!isPlainObject(config) || this.instance.visible) return
+    if (this.instance.visible) return
     this.instance.visible = true
 
     const { title, during = this.instance.during, icon = 'none', onShow } = config

@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const { debounce } = require('lodash')
 const getAbsPath = (...p) => path.resolve(__dirname, '../', ...p)
 
 const outputDir = 'dist/'

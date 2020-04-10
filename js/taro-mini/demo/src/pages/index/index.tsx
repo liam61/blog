@@ -40,6 +40,7 @@ class Index extends Component<any, { radio: string }> {
       <View className='index'>
         <Button onClick={() => toast.success('成功提交请求')}>click to open success toast</Button>
         <Button onClick={() => toast.error('请求发送失败')}>click to open error toast</Button>
+        <Button onClick={() => toast.hide()}>click to hide toast</Button>
         <Button onClick={this.createLoading}>click to create loading</Button>
         <CustomRender
           data={[
