@@ -47,7 +47,7 @@ test('parse simple', () => {
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Identifier);
-  expect(token.value).toBe('true');
+  expect(token.value).toBe(true);
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Comma);
@@ -65,7 +65,7 @@ test('parse simple', () => {
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Number);
-  expect(token.value).toBe('123');
+  expect(token.value).toBe(123);
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.CloseBrace);
@@ -97,7 +97,7 @@ test('parse object and array', () => {
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Number);
-  expect(token.value).toBe('1');
+  expect(token.value).toBe(1);
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Comma);
@@ -121,7 +121,7 @@ test('parse object and array', () => {
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Identifier);
-  expect(token.value).toBe('false');
+  expect(token.value).toBe(false);
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.CloseBrace);
@@ -151,7 +151,7 @@ test('parse object and array', () => {
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.Identifier);
-  expect(token.value).toBe('null');
+  expect(token.value).toBe(null);
 
   token = lexer.next();
   expect(token.type).toBe(TOKEN_TYPE.CloseBrace);

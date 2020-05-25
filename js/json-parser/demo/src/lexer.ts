@@ -95,7 +95,7 @@ export class Lexer {
         return true;
       }
     });
-    return buffer ? { type: TOKEN_TYPE.Identifier, value: buffer } : null;
+    return buffer ? { type: TOKEN_TYPE.Identifier, value: JSON.parse(buffer) } : null;
   }
 
   parseNumber() {
@@ -104,7 +104,7 @@ export class Lexer {
       buffer += this.curChar;
       this.consume();
     }
-    return buffer ? { type: TOKEN_TYPE.Number, value: buffer } : null;
+    return buffer ? { type: TOKEN_TYPE.Number, value: +buffer } : null;
   }
 
   parseComment() {

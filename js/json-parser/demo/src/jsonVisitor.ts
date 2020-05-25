@@ -50,7 +50,7 @@ export default class JsonVisitor extends Visitor {
   visitLiteral(jsonLiteral: JsonLiteral) {
     const { value } = jsonLiteral;
     this.curNode = jsonLiteral;
-    this.value += `"${value}", `;
+    this.value += `${value}, `;
   }
 
   visitComment(jsonComment: JsonComment) {

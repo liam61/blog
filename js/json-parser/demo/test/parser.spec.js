@@ -12,7 +12,7 @@ test('parser simple', () => {
   const parser = new Parser(lexer);
   const value = parser.parseJSON();
   expect(value).toBe(
-    '{ "resource": ["song", "arrString", ], "ab": "true", "num": "123",  }, ',
+    '{ "resource": ["song", "arrString", ], "ab": true, "num": 123,  }, ',
   );
 });
 
@@ -28,7 +28,7 @@ test('parse object and array', () => {
   const parser = new Parser(lexer);
   const value = parser.parseJSON();
   expect(value).toBe(
-    '{ "cc": ["1", "asr4", { "objInArr": "false",  }, ], "obj": { "un": "null",  },  }, ',
+    '{ "cc": [1, "asr4", { "objInArr": false,  }, ], "obj": { "un": null,  },  }, ',
   );
 });
 
@@ -38,7 +38,7 @@ test('parse barer array', () => {
   const lexer = new Lexer(input);
   const parser = new Parser(lexer);
   const value = parser.parseJSON();
-  expect(value).toBe('["1", "str", "true", { "a": "4",  }, ], ');
+  expect(value).toBe('[1, "str", true, { "a": 4,  }, ], ');
 });
 
 test('parse empty', () => {
@@ -68,7 +68,7 @@ test('missing comma', () => {
 test('error array', () => {
   expect(() => {
     const input = `{
-      "bb": ["1", true } ]
+      "bb": [1, true } ]
     }`;
 
     const lexer = new Lexer(input);

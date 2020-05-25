@@ -36,10 +36,10 @@ const input = `{
 
 ```js
 {
-  "resource":[ "song", "arrString", ],
+  "resource":["song", "arrString", ],
   "ab": "true",
-  "cc": [ "1", "asr4", { "objInArr": "false", }, ],
-  "obj": { "un": "null", },
+  "cc": [1, "asr4", { "objInArr": false, }, ],
+  "obj": { "un": null, },
 },
 ```
 
