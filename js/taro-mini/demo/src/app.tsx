@@ -9,7 +9,7 @@ import './components/loading/index.wxss'
 
 class App extends Component {
   config: Config = {
-    pages: ['pages/index/index'],
+    pages: ['pages/index/index', 'pages/preload/index', 'pages/preloadAll/index'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',

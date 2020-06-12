@@ -1,4 +1,5 @@
 import { HttpMethod, Param, Parse } from 'utils';
+import { parseScript } from 'esprima';
 
 export const CONTROLLER_METADATA = 'controller';
 export const ROUTE_METADATA = 'method';
@@ -9,6 +10,28 @@ export function Controller(path = ''): ClassDecorator {
   return (target: object) => {
     Reflect.defineMetadata(CONTROLLER_METADATA, path, target);
   };
+}
+
+// newable
+function ClassDecorator<T extends new (...args: any[]) => any>(Constor: T) {
+  return class CtrlCls extends Constor {
+    constructor(...args: any[]) {
+      super(args);
+
+      const clsAst = parseScript(Constor.toString());
+      const node = clsAst.body[0];
+
+      if (node.type === 'FunctionDeclaration') {
+        // 拿到函数的参数
+        const funParams = node.params;
+        funParams.forEach(param => {
+          // 注入
+          // this[param.name] = Reflect.getMetadata()
+          // this[param.name] = new SomeService()
+        });
+      }
+    }
+  } as any;
 }
 
 export function createMethodDecorator(method: HttpMethod = 'get') {

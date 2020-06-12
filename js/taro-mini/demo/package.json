@@ -27,6 +27,7 @@
   "mobx": "4.8.0",
   "nerv-devtools": "^1.5.5",
   "nervjs": "^1.5.5",
+  "qs": "^6.9.4",
   "regenerator-runtime": "0.11.1"
  },
  "devDependencies": {

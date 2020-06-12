@@ -4,6 +4,8 @@ import { ComponentType } from 'react'
 import CustomRender from '@/components/custom-render'
 import lottie from 'lottie-miniprogram'
 import toast from '@/utils/toast'
+import $history from '@/utils/history'
+import { getUid } from '@/utils'
 
 class Index extends Component<any, { radio: string }> {
   state = {
@@ -31,6 +33,14 @@ class Index extends Component<any, { radio: string }> {
       })
       .exec()
     this.initedLoading = true
+  }
+
+  goPreloadPage = (force = true) => {
+    $history.go('/pages/preload/index', { query: { id: getUid(), force } })
+  }
+
+  goPreloadAllPage = () => {
+    $history.go('/pages/preloadAll/index', { query: { id: getUid() } })
   }
 
   render() {
@@ -84,6 +94,9 @@ class Index extends Component<any, { radio: string }> {
             </View>
           </view>
         </CustomRender>
+        <Button onClick={() => this.goPreloadPage(true)}>go page without preload</Button>
+        <Button onClick={() => this.goPreloadPage(false)}>go preload page</Button>
+        <Button onClick={this.goPreloadAllPage}>go preloadAll page</Button>
       </View>
     )
   }
