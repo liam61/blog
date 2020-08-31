@@ -1,0 +1,3 @@
+[submodule "server/hexo-to-server"]
+	path = server/hexo-to-server
+	url = https://github.com/lawler61/hexo-to-server.git
