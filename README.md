@@ -50,6 +50,8 @@
 
 - [3. 有趣的装饰器：使用 Reflect Metadata 实践依赖注入](./server/ts-decorator/index.md)
 
+- [4. 服务端渲染（ssr）React & Vue Demo](./server/ssr/index.md)
+
 ## 项目相关
 
 - [1. 手撸 react 脚手架：react-lighter](https://github.com/lawler61/react-lighter.git)
