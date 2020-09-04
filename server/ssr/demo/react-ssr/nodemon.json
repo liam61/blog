@@ -1,5 +1,5 @@
 {
-  "exec": "yarn build && ts-node server",
+  "exec": "yarn build && yarn serve",
   "ext": "ts, tsx",
   "delay": "500"
 }

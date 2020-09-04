@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev:client": "NODE_ENV=development webpack-dev-server --config ./config/webpack.client.js",
-    "build": "yarn build:client && yarn build:server",
     "build:client": "rm -rf dist && webpack --config ./config/webpack.client.js",
     "build:server": "webpack --config ./config/webpack.server.js",
-    "start": "nodemon"
+    "build": "RENDER_ENV=ssr yarn build:client && yarn build:server",
+    "serve": "ts-node server",
+    "start": "NODE_ENV=development RENDER_ENV=ssr nodemon"
   },
   "keywords": [],
-  "author": "",
+  "author": "lawler61",
   "license": "ISC",
   "dependencies": {
     "koa": "^2.13.0",

@@ -22,6 +22,9 @@
 		"prettier",
 		"react"
 	],
+	"globals": {
+		"__IS_SSR__": true
+	},
 	"rules": {
 		"no-unused-vars": "off"
 	}

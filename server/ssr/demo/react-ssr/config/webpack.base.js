@@ -1,4 +1,5 @@
 const { resolve } = require('path')
+const { DefinePlugin } = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -28,5 +29,10 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new DefinePlugin({
+      'process.env.RENDER_ENV': JSON.stringify(process.env.RENDER_ENV),
+    }),
+  ],
 }

@@ -3,19 +3,23 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LoadablePlugin = require('@loadable/webpack-plugin')
 const base = require('./webpack.base')
-const isDev = process.env.NODE_ENV === 'development'
+const isSSR = process.env.RENDER_ENV === 'ssr'
 
 module.exports = merge(base, {
   entry: {
     client: resolve('src/client-entry.tsx'),
   },
   plugins: [
-    isDev &&
+    !isSSR &&
       new HtmlWebpackPlugin({
         template: 'public/index.csr.html',
       }),
-    new LoadablePlugin({
-      filename: 'client-loadable-stats.json',
-    }),
+    new LoadablePlugin(),
   ].filter(Boolean),
+  optimization: {
+    runtimeChunk: true,
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 })

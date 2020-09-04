@@ -1,36 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { render, hydrate } from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, useLocation, useRouteMatch } from 'react-router-dom'
 import { configure } from 'mobx'
 import { Provider } from 'mobx-react'
 import { loadableReady } from '@loadable/component'
 import App from './App'
 import initializeStore from './store'
+import routes from './routes'
 
-const isDev = process.env.NODE_ENV === 'development'
+const isSSR = process.env.RENDER_ENV === 'ssr'
 const store = initializeStore()
 const container = document.getElementById('app')
 
 configure({ enforceActions: 'observed' })
 
-if (isDev) {
-  render(
+const _App = () => {
+  return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>,
-    container,
+      <BrowserRouter>{isSSR ? <App /> : <AppClient />}</BrowserRouter>
+    </Provider>
   )
-} else {
-  loadableReady(() => {
-    hydrate(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>,
-      container,
-    )
+}
+
+const AppClient = () => {
+  const location = useLocation()
+  const matches = routes
+    .filter(route => useRouteMatch(route))
+    .map(route => route.component || route.render)
+
+  // matches.length === 0 -> 404
+
+  Promise.all(
+    matches.map(
+      (Cmp: any) => typeof Cmp.getInitialProps === 'function' && Cmp.getInitialProps(store),
+    ),
+  ).then(states => {
+    const state = states.reduce((obj, state) => Object.assign(obj, state), {})
+    store.update(state)
   })
+
+  useEffect(() => {
+    console.log('router change')
+  }, [location])
+
+  return <App />
+}
+
+if (isSSR) {
+  loadableReady(() => hydrate(<_App />, container))
+} else {
+  render(<_App />, container)
 }

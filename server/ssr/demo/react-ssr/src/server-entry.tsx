@@ -1,7 +1,8 @@
-import { matchPath } from 'react-router-dom'
-// import createApp from './main'
-import routes from './routes'
+import React from 'react'
+import { matchPath, StaticRouter } from 'react-router-dom'
+import { Provider } from 'mobx-react'
 import App from './App'
+import routes from './routes'
 
 // called in server
 export default ctx => {
@@ -19,8 +20,19 @@ export default ctx => {
         (Cmp: any) => typeof Cmp.getInitialProps === 'function' && Cmp.getInitialProps(ctx),
       ),
     ).then(states => {
-      ctx.state = states.reduce((obj, state) => Object.assign(obj, state), {})
-      resolve(App)
+      const state = states.reduce((obj, state) => Object.assign(obj, state), {})
+      const _App = () => (
+        <Provider store={state}>
+          <StaticRouter location={ctx.url}>
+            <App />
+          </StaticRouter>
+        </Provider>
+      )
+
+      resolve({
+        App: _App,
+        state,
+      })
     })
   })
 }
