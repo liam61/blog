@@ -42,14 +42,14 @@ export class Store {
   }
 }
 
+// observer without observe
 useStaticRendering(isServer)
 let store: Store | null = null
 
 export default function initializeStore(initialState = {}) {
-  const instance = new Store(initialState)
-  if (isServer) return instance
+  if (isServer) return new Store(initialState)
 
-  !store && (store = instance)
+  !store && (store = new Store(initialState))
 
   if (window.__INITIAL_STATE__) {
     store.update(window.__INITIAL_STATE__)

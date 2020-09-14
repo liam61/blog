@@ -9,7 +9,7 @@ module.exports = merge(base, {
   },
   output: {
     filename: '[name].js',
-    libraryTarget: 'commonjs2', // 把导出的结果放到 module.exports 上
+    libraryTarget: 'commonjs2',
   },
   target: 'node',
   externals: ['@loadable/component', nodeExternals()],
