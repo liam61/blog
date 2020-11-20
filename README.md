@@ -44,7 +44,7 @@
 
 ## 服务器相关
 
-- [1. 带你跳过各种坑，一次性把 Hexo 博客部署到自己的服务器](https://github.com/lawler61/hexo-to-server)
+- [1. 带你跳过各种坑，一次性把 Hexo 博客部署到自己的服务器](./server/hexo-to-server/index.md)
 
 - [2. 折腾服务器：Docker 项目打包发布 + 一键部署](./server/server-docker-deploy/index.md)
 
