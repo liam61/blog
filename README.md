@@ -34,6 +34,8 @@
 
 - [9. mini-architecture：从零手撸一整套小程序架构](./js/mini-architecture/index.md)
 
+- [10. mobx task manage 效率工具](./js/mobx-task-manage/index.md)
+
 [mobx 源码解读 issue](https://github.com/lawler61/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%22mobx+%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%22) 欢迎讨论，听说评论区里全是大神哦
 
 ## HTML、CSS 相关

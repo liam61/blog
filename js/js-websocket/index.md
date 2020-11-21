@@ -1,4 +1,4 @@
-# JS websocket 实战——好友聊天
+# websocket 实战——好友聊天
 
 还不了解 websocket 的同鞋，请先学习阮一峰老师的 [WebSocket 教程](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
 

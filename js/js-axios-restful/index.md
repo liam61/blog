@@ -1,4 +1,4 @@
-# JS axios: restful 风格的二次封装
+# axios: restful 风格的二次封装
 
 目前前端发送异步请求主要是：ajax、fetch、axios，对于三者的区别就不做具体的阐述
 

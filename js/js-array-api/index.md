@@ -1,4 +1,4 @@
-# JS 手撸 forEach、map、reduce 等函数（创新版）
+# 手撸 forEach、map、reduce 等函数（创新版）
 
 关于 forEach 等函数的实现不算稀奇，而且也是前端开发人员的基本功，网上一搜也一大堆
 

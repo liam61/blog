@@ -100,7 +100,7 @@ if (isPage) {
 
 ### 二、问题分析
 
-1. 由源码分析可知，componentWillPreload 预请求只能针对于第二次进入界面才有效，因为第一次 Taro 自己都拿不到 ComponentClass。但小程序本身（如微信）是做了第一次进入后的优化的，即第二次进入本身就比第一次快很多（见下图控制台），所以对于 preload 来说，第一次尤为重要，但 Taro 中无法实现
+1. 由源码分析可知，componentWillPreload 预请求只能针对于第二次进入界面才有效，因为第一次 Taro 自己都拿不到 ComponentClass。但小程序本身（如微信）是做了第一次进入后的优化的，即第二次进入本身就比第一次快很多（如下图控制台），所以对于 preload 来说，第一次尤为重要，但 Taro 中无法实现
 
 2. 传参限制：我们已经知道 componentWillPreload params 是来自于 url 的 query，就是说我们要使用的参数必须全部 stringify 到 url 上，那如果预请求的参数需要用数组、对象或是对象数组，又或者参数有 20 个呢，全部写到 query 上？那不现实，也不灵活
 
@@ -453,7 +453,7 @@ export const getUser = (id = '') => {
   // ...
 ```
 
-7. 业务代码完全无感知，你给我异步还是同步的 Promise，我都是调用 then，效果如下。另外可以看到第一次 preload 调用 api 和界面正式调用 api 足足相差了 943 ms，正常的话接口已经回来了，这也反过来证实 sync Promise 的必要性
+7. 业务代码完全无感知，你给我异步还是同步的 Promise，我都是调用 then，效果图如下。另外可以看到第一次 preload 调用 api 和界面正式调用 api 足足相差了 943 ms，正常的话接口已经回来了，这也反过来证实 sync Promise 的必要性
 
 ![preload](./images/preload.gif)
 
@@ -608,14 +608,15 @@ class PreloadAllPage extends Component {
 }
 ```
 
-6. 效果图如下：
+6. 效果图如下
+
 ![preload all](./images/preload-all.gif)
 
 ## 最后
 
 1. 源码获取：[taro mini demo](https://github.com/lawler61/blog/tree/master/js/taro-mini/demo)
 
-4. 喜欢的小伙伴，记得留下你的小 ❤️ 哦~
+2. 喜欢的小伙伴，记得留下你的小 ❤️ 哦~
 
 ## 参考资料
 
