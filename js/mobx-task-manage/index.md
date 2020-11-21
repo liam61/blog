@@ -1,4 +1,4 @@
-# Mobx：还在 try catch + runInAction？试试这款效率工具
+# 还在 try catch + runInAction？试试这款效率工具
 
 前段时间撸了个效率工具，基本能够应对业务上相对复杂的场景，目前相关业务代码已上线几个月，运行良好
 
@@ -446,6 +446,19 @@ class Loadx {
     }
   }
 }
+
+// 使用
+class Store {
+  @Loadx.action
+  getUser() {
+    this.loadx.setConfig({ observe: false });
+    const count = await api();
+
+    return () => {
+      this.count = count;
+    }
+  }
+}
 ```
 
 3. 智能的 type 提示，写法兼容
@@ -531,7 +544,6 @@ export type LoadxStore<T extends Record<string, any>> = {
 // 使用
 @observer
 class CC extends Component<{store: LoadxStore<Store>}> {
-
   render() {
     const { getPermission } = this.props.store;
     // type:
@@ -590,7 +602,6 @@ const Fc = () => {
   });
 
   const { data } = store;
-
   return useObserver(() => (
     <div>
       <div>
