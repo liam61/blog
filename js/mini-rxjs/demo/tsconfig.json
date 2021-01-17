@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "strict": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "jsx": "react",
+    "target": "esnext",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": [
+    "src"
+  ]
+}

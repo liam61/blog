@@ -1,10 +1,9 @@
 # Mac OS
 .DS_Store
 
-# IDE
 .idea
 .project
-.vscode
+.codesandbox
 
 # npm
 node_modules
@@ -14,7 +13,6 @@ yarn.lock
 package-lock.json
 .yo-rc.json
 .npmrc
-*.bak
 
 # folder
 build
@@ -23,3 +21,4 @@ coverage
 
 # cache
 .cache
+*.bak
