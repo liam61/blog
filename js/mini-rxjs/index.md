@@ -14,9 +14,9 @@
 
 ### 二、`Callbag`
 
-1. `Ben Lesh` 提到了最初创建 `RxJs` 的灵感来自于 `Callbag`，于是我先刷了一波 [Callbag](https://github.com/callbag/callbag) 才看的 `RxJs` 源码
+1. Ben Lesh 提到了最初创建 RxJs 的灵感来自于 Callbag，于是我先刷了一波 [Callbag](https://github.com/callbag/callbag) 才看的 RxJx 源码
 
-2. `Callbag` 是一种轻量级的响应式编程标准，并不是具体的实现，当然这个大佬有根据这个标准实现了 [callbag-basics](https://github.com/staltz/callbag-basics)
+2. Callbag 是一种轻量级的响应式编程标准，并不是具体的实现，当然这个大佬有根据这个标准实现了 [callbag-basics](https://github.com/staltz/callbag-basics)
 
 
 3. 里面提到了“可观察对象”和“观察者”，以及两者通信的重要的概念，当然结合 [Rxjs的官网](https://rxjs.dev/guide/overview) 我们可以将两者合并总结下：
@@ -25,33 +25,33 @@
 
 1. `Observable` 可观察的对象，有 `Pullable` 和 `Pushable` 之分
 
-- `Pullable` 可拉取的可观察对象，即每次观察者需要数据时从该 `Observable` 拉取
+- `Pullable` 可拉取的可观察对象，即每次观察者需要数据时从该 Observable 拉取
 
     - 每一个 `JavaScript Function` 都可以看做是一种可拉取的模式，帮助你来理解这个概念，试想下我们如何调用 JS 函数的
 
-    - 这时观察者是主动的，`Observable` 是被动的，即不知道观察者什么时候请求数据
+    - 这时观察者是主动的，Observable 是被动的，即不知道观察者什么时候请求数据
 
-- `Pushable` 可推送的可观察对象，即 `Observable` 可以主动推送数据给订阅自己的观察者
+- `Pushable` 可推送的可观察对象，即 Observable 可以主动推送数据给订阅自己的观察者
 
-    - 你可以用 `Promise + Then` 的模式来理解，试想下我们在 `Promise` 构造函数中调用 `resolve`、`reject` 并把结果传递给往后一个个 `Then`函数的过程吧
+    - 你可以用 `Promise + Then` 的模式来理解，试想下我们在 Promise 构造函数中调用 resolve、reject 并把结果传递给往后一个个 Then 函数的过程吧
 
-    - 这时 `Observable` 是主动的，观察者是被动的，即不知道 `Observable` 什么时候推送数据来
+    - 这时 Observable 是主动的，观察者是被动的，即不知道 Observable 什么时候推送数据来
 
-2. `Observer` 观察者，可订阅 `Observable`，订阅时传给 `Observable` 自己的回调，你可以理解为是通信
+2. `Observer` 观察者，可订阅 Observable，订阅时传给 Observable 自己的回调，你可以理解为是通信
 
 3. `Operators` 指令集，方便我们以结构化的方式来操作和控制流程，常见的有：
 
-- `Creation Operators`，如 `from`、`of`、`interval`，创建 `Observer`
+- `Creation Operators`，如 from、of、interval，创建 Observer
 
-- `Transformation Operators`，如 `map`、`pluck`，操作 `Observer`
+- `Transformation Operators`，如 map、pluck，操作 Observer
 
-- `Filtering Operators`，如 `filter`、`take`，过滤 `Observer`
+- `Filtering Operators`，如 filter、take，过滤 Observer
 
-## 在 `Callbag` 中实现
+## 在 Callbag 中实现
 
 先不着急怼 RxJs，先看看 Callbag
 
-### 一、`sink`
+### 一、sink
 
 1. **基本的组成原子，可以作为可观察对象（这里用的是 source）或者观察者（listener）**
 
@@ -73,7 +73,7 @@
 
 5. 任意一方可以以 type 2 告知对方可以结束通信了，对方不用 talkback
 
-### 二、`source`
+### 二、source
 
 1. 如何使用：我们想用 from 和 map operator 来处理一个 array，并遍历打印结果
 
@@ -152,7 +152,7 @@ const map = (callback, thisArg) => (source) => (type, sink) => {
 };
 ```
 
-### 三、`listener`
+### 三、listener
 
 好了，读到这我们还没有实质性上的把 type 1 作为输入是吧，只是用了 type 1 来作为判断。来撸个 listener 就全部串起来了
 
@@ -180,7 +180,7 @@ const each = (callback, thisArg) => (source) => {
 };
 ```
 
-### 四、`pipe`
+### 四、pipe
 
 一行代码，第一个参数接受一个 source sink，传到各个 operator
 
@@ -190,11 +190,11 @@ const pipe = (source, ...callbacks) => callbacks.reduce((prev, cb) => cb(prev), 
 
 先回到前面看看使用例子或者跑下 demo 吧
 
-## `RxJs`
+## RxJs
 
 收拾好了我们就开始上正菜吧
 
-### 一、`Callbag` 的升级
+### 一、Callbag 的升级
 
 callbag 传递出来的思想固然迷人，但使用起来还是不方便，为啥呢
 
@@ -495,6 +495,8 @@ setTimeout(() => {
 6. 码字不易，喜欢的小伙伴，记得留下你的小 ❤️ 哦~
 
 ## 参考资料
+
+- [函数式编程初探](http://www.ruanyifeng.com/blog/2012/04/functional_programming.html)
 
 - [callbag](https://github.com/callbag/callbag)
 
