@@ -2,6 +2,8 @@
 
 不定期分享一些前端技术
 
+**博客 star 到 100 啦~ ❤️**
+
 ## 个人站点
 
 [https://www.omyleon.com](https://www.omyleon.com)
