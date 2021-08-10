@@ -128,3 +128,53 @@ new Child()
 4. 上一点对 JS 的继承会有影响，由打印可见，`setup` 最终还是执行 parent 上的函数，就是因为 Child 在 `Parent.call(this)` 时，就已经把函数属性挂上去了
 
 5. 虽然函数属性书写时绑定 this 方便，但在继承时需要额外注意
+
+### 三、instanceof
+
+1. polyfill：通过不断迭代 `__proto__`，并与查找对象的 prototype 做对比，直到遇到 null，即原型链终点
+
+```js
+function instanceOf(object, target) {
+  while (object != null) {
+    if (object == target.prototype) return true
+    object = object.__proto__
+  }
+  return false
+}
+
+instanceOf(new Date(), Object) // true
+```
+
+2. 查找细节
+
+```js
+function A() {}
+function B() {}
+
+// 1
+A.prototype = B.prototype
+
+// 2
+A.prototype = new B()
+
+// 3
+A.prototype = Object.create(B.prototype)
+
+const a = new A()
+```
+
+- 2、3 都是继承的“半成品”，只继承了 B 原型上的属性和方法，操作 A.prototype 不会影响 B.prototype
+
+- 1 是赋值，A、B 共用一个原型对象，操作其中一个会影响另一个。但用 instanceof 判断
+
+```js
+B.prototype.constructor === B // true
+
+a instanceof A // true
+
+a instanceof B // true
+```
+
+3. 可知，instanceof 查找时有且只对比了原型对象，prototype.constructor 不会影响 instanceof 的判断
+
+4. prototype.constructor 原本是 JS 设计的遗留产物，直到 [ES6 时才正式定义和使用](https://stackoverflow.com/a/35538702/12600517)。为保持良好的习惯，应该尽量让原型的 constructor 指向其构造函数
