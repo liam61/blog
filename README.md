@@ -14,6 +14,8 @@
 
 ## JS 相关
 
+- [14. Server Components 笔记](./js/server-component/index.md)
+
 - [13. Generator 协程工作原理](./js/regenerator/index.md)
 
 - [12. JS 原型链、继承知识点（笔记）](./js/prototype&extends/index.md)
